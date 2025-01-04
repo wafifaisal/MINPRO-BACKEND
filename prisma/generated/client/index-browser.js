@@ -132,10 +132,7 @@ exports.Prisma.EventScalarFieldEnum = {
   event_preview: 'event_preview',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-<<<<<<< HEAD
-=======
   coupon_seat: 'coupon_seat',
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   category: 'category',
   organizerId: 'organizerId'
 };
@@ -217,8 +214,6 @@ exports.Prisma.Order_DetailsScalarFieldEnum = {
   ticketId: 'ticketId'
 };
 
-<<<<<<< HEAD
-=======
 exports.Prisma.ReviewScalarFieldEnum = {
   userId: 'userId',
   eventId: 'eventId',
@@ -227,7 +222,6 @@ exports.Prisma.ReviewScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -268,8 +262,6 @@ exports.Status = exports.$Enums.Status = {
   cancelled: 'cancelled'
 };
 
-<<<<<<< HEAD
-=======
 exports.RatingRange = exports.$Enums.RatingRange = {
   ONE: 'ONE',
   TWO: 'TWO',
@@ -278,7 +270,6 @@ exports.RatingRange = exports.$Enums.RatingRange = {
   FIVE: 'FIVE'
 };
 
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 exports.Prisma.ModelName = {
   Event: 'Event',
   Ticket: 'Ticket',
@@ -288,12 +279,8 @@ exports.Prisma.ModelName = {
   UserCoupon: 'UserCoupon',
   UserPoint: 'UserPoint',
   Order: 'Order',
-<<<<<<< HEAD
-  Order_Details: 'Order_Details'
-=======
   Order_Details: 'Order_Details',
   Review: 'Review'
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 };
 
 /**

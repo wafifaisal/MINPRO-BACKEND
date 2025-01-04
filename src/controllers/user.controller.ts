@@ -3,10 +3,6 @@ import prisma from "../prisma";
 import { Prisma } from "../../prisma/generated/client";
 
 export class UserController {
-<<<<<<< HEAD
-  // Method untuk mengambil semua pengguna
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   async getUsers(req: Request, res: Response) {
     try {
       const { search, page = 1, limit = 5 } = req.query;
@@ -16,10 +12,7 @@ export class UserController {
           { email: { contains: search as string, mode: "insensitive" } },
         ];
       }
-<<<<<<< HEAD
 
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       const countUser = await prisma.user.aggregate({ _count: { _all: true } });
       const total_page = Math.ceil(countUser._count._all / +limit);
       const users = await prisma.user.findMany({
@@ -28,21 +21,14 @@ export class UserController {
         take: +limit,
         skip: +limit * (+page - 1),
       });
-<<<<<<< HEAD
 
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       res.status(200).send({ total_page, page, users });
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
     }
   }
-<<<<<<< HEAD
 
-  // Method untuk mengambil data pengguna berdasarkan ID
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   async getUserId(req: Request, res: Response) {
     try {
       const user = await prisma.user.findUnique({
@@ -54,10 +40,7 @@ export class UserController {
       res.status(400).send(err);
     }
   }
-<<<<<<< HEAD
 
-  // Method untuk mengedit data pengguna
-=======
   async createUser(req: Request, res: Response) {
     try {
       await prisma.user.create({ data: req.body });
@@ -67,7 +50,7 @@ export class UserController {
       res.status(400).send(err);
     }
   }
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
+
   async editUser(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -81,11 +64,7 @@ export class UserController {
       res.status(400).send(err);
     }
   }
-<<<<<<< HEAD
 
-  // Method untuk menghapus pengguna
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   async deleteUser(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -96,11 +75,7 @@ export class UserController {
       res.status(400).send(err);
     }
   }
-<<<<<<< HEAD
 
-  // Method untuk mengedit avatar pengguna
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   async editAvatar(req: Request, res: Response) {
     try {
       if (!req.file) throw { message: "file empty" };
@@ -115,18 +90,11 @@ export class UserController {
       res.status(400).send(err);
     }
   }
-<<<<<<< HEAD
 
   // Method untuk mengedit avatar menggunakan Cloud (non-functional)
   async editAvatarCloud(req: Request, res: Response) {
     try {
       if (!req.file) throw { message: "file empty" };
-=======
-  async editAvatarCloud(req: Request, res: Response) {
-    try {
-      if (!req.file) throw { message: "file empty" };
-      // Removed cloudinary upload since it's not available
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       res.status(400).send({ message: "Upload failed" });
     } catch (err) {
       console.log(err);

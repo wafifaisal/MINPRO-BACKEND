@@ -10,6 +10,9 @@ CREATE TYPE "EventType" AS ENUM ('Paid', 'Free');
 -- CreateEnum
 CREATE TYPE "Status" AS ENUM ('pending', 'success', 'cancelled');
 
+-- CreateEnum
+CREATE TYPE "RatingRange" AS ENUM ('1', '2', '3', '4', '5');
+
 -- CreateTable
 CREATE TABLE "Event" (
     "id" TEXT NOT NULL,
@@ -26,6 +29,7 @@ CREATE TABLE "Event" (
     "event_preview" TEXT,
     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
+    "coupon_seat" INTEGER,
     "category" "EventCategory" NOT NULL,
     "organizerId" TEXT,
 
@@ -38,7 +42,7 @@ CREATE TABLE "Ticket" (
     "category" TEXT,
     "desc" TEXT,
     "seats" INTEGER,
-    "price" INTEGER NOT NULL,
+    "price" INTEGER NOT NULL DEFAULT 0,
     "eventId" TEXT,
 
     CONSTRAINT "Ticket_pkey" PRIMARY KEY ("id")
@@ -133,6 +137,17 @@ CREATE TABLE "Order_Details" (
     CONSTRAINT "Order_Details_pkey" PRIMARY KEY ("orderId","ticketId")
 );
 
+-- CreateTable
+CREATE TABLE "Review" (
+    "userId" TEXT NOT NULL,
+    "eventId" TEXT NOT NULL,
+    "comment" TEXT NOT NULL,
+    "rating" "RatingRange" NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Review_pkey" PRIMARY KEY ("userId","eventId")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Event_event_name_key" ON "Event"("event_name");
 
@@ -174,3 +189,9 @@ ALTER TABLE "Order_Details" ADD CONSTRAINT "Order_Details_orderId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "Order_Details" ADD CONSTRAINT "Order_Details_ticketId_fkey" FOREIGN KEY ("ticketId") REFERENCES "Ticket"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

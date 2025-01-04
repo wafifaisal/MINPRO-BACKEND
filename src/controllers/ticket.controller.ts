@@ -15,44 +15,38 @@ export class TicketController {
   }
 
   async createTicket(req: Request, res: Response) {
+    const eventId = req.params.eventId;
     try {
-<<<<<<< HEAD
-      console.log(req.params.eventId);
-      const eventId = req.params.eventId;
+      console.log(eventId);
 
-      req.body.eventId = req.params.eventId;
-      const tickets = req.body.tickets;
-      for (let i = 0; i < tickets.length; i++) {
-        tickets[i].eventId = eventId;
-      }
-      await prisma.ticket.createMany({ data: req.body.tickets });
-      res.status(200).send({ message: "Ticket has been created" });
-    } catch (err) {
-      console.log(err);
-=======
-      const eventId = req.params.eventId;
+      // Ensure the eventId is included in the request body
       req.body.eventId = eventId;
 
-      // Ambil event_type dari tabel Event
+      // Map over tickets to add eventId to each
+      const tickets = req.body.tickets.map((ticket: any) => ({
+        ...ticket,
+        eventId,
+      }));
+
+      // Fetch event_type from the Event table
       const event = await prisma.event.findUnique({
         where: { id: eventId },
         select: { event_type: true },
       });
 
-      const tickets = req.body.tickets.map((ticket: any) => ({
+      // If the event type is "Free", set the ticket price to 0
+      const updatedTickets = tickets.map((ticket: any) => ({
         ...ticket,
-        eventId,
         price: event?.event_type === "Free" ? 0 : ticket.price,
       }));
 
-      // Simpan tiket ke dalam database
-      await prisma.ticket.createMany({ data: tickets });
+      // Insert tickets into the database
+      await prisma.ticket.createMany({ data: updatedTickets });
 
       res.status(200).send({ message: "Tickets have been created" });
     } catch (err) {
       console.error(err);
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
-      res.status(400).send(err);
+      res.status(500).send({ message: "Internal server error", error: err });
     }
   }
 }
