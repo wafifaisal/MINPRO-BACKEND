@@ -58,11 +58,14 @@ export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
  * 
  */
 export type Order_Details = $Result.DefaultSelection<Prisma.$Order_DetailsPayload>
+<<<<<<< HEAD
+=======
 /**
  * Model Review
  * 
  */
 export type Review = $Result.DefaultSelection<Prisma.$ReviewPayload>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 
 /**
  * Enums
@@ -105,6 +108,8 @@ export const Status: {
 
 export type Status = (typeof Status)[keyof typeof Status]
 
+<<<<<<< HEAD
+=======
 
 export const RatingRange: {
   ONE: 'ONE',
@@ -116,6 +121,7 @@ export const RatingRange: {
 
 export type RatingRange = (typeof RatingRange)[keyof typeof RatingRange]
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 }
 
 export type EventCategory = $Enums.EventCategory
@@ -134,10 +140,13 @@ export type Status = $Enums.Status
 
 export const Status: typeof $Enums.Status
 
+<<<<<<< HEAD
+=======
 export type RatingRange = $Enums.RatingRange
 
 export const RatingRange: typeof $Enums.RatingRange
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 /**
  * ##  Prisma Client ʲˢ
  * 
@@ -350,6 +359,8 @@ export class PrismaClient<
     * ```
     */
   get order_Details(): Prisma.Order_DetailsDelegate<ExtArgs>;
+<<<<<<< HEAD
+=======
 
   /**
    * `prisma.review`: Exposes CRUD operations for the **Review** model.
@@ -360,6 +371,7 @@ export class PrismaClient<
     * ```
     */
   get review(): Prisma.ReviewDelegate<ExtArgs>;
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 }
 
 export namespace Prisma {
@@ -808,8 +820,12 @@ export namespace Prisma {
     UserCoupon: 'UserCoupon',
     UserPoint: 'UserPoint',
     Order: 'Order',
+<<<<<<< HEAD
+    Order_Details: 'Order_Details'
+=======
     Order_Details: 'Order_Details',
     Review: 'Review'
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -825,7 +841,11 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
+<<<<<<< HEAD
+      modelProps: "event" | "ticket" | "organizer" | "rating" | "user" | "userCoupon" | "userPoint" | "order" | "order_Details"
+=======
       modelProps: "event" | "ticket" | "organizer" | "rating" | "user" | "userCoupon" | "userPoint" | "order" | "order_Details" | "review"
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1459,6 +1479,8 @@ export namespace Prisma {
           }
         }
       }
+<<<<<<< HEAD
+=======
       Review: {
         payload: Prisma.$ReviewPayload<ExtArgs>
         fields: Prisma.ReviewFieldRefs
@@ -1529,6 +1551,7 @@ export namespace Prisma {
           }
         }
       }
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     }
   } & {
     other: {
@@ -1693,14 +1716,20 @@ export namespace Prisma {
     Ticket: number
     Rating: number
     Order: number
+<<<<<<< HEAD
+=======
     Review: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Ticket?: boolean | EventCountOutputTypeCountTicketArgs
     Rating?: boolean | EventCountOutputTypeCountRatingArgs
     Order?: boolean | EventCountOutputTypeCountOrderArgs
+<<<<<<< HEAD
+=======
     Review?: boolean | EventCountOutputTypeCountReviewArgs
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   // Custom InputTypes
@@ -1735,6 +1764,8 @@ export namespace Prisma {
     where?: OrderWhereInput
   }
 
+<<<<<<< HEAD
+=======
   /**
    * EventCountOutputType without action
    */
@@ -1742,6 +1773,7 @@ export namespace Prisma {
     where?: ReviewWhereInput
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 
   /**
    * Count Type TicketCountOutputType
@@ -1814,7 +1846,10 @@ export namespace Prisma {
     Rating: number
     User_Coupon: number
     User_Point: number
+<<<<<<< HEAD
+=======
     Review: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1822,7 +1857,10 @@ export namespace Prisma {
     Rating?: boolean | UserCountOutputTypeCountRatingArgs
     User_Coupon?: boolean | UserCountOutputTypeCountUser_CouponArgs
     User_Point?: boolean | UserCountOutputTypeCountUser_PointArgs
+<<<<<<< HEAD
+=======
     Review?: boolean | UserCountOutputTypeCountReviewArgs
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   // Custom InputTypes
@@ -1864,6 +1902,8 @@ export namespace Prisma {
     where?: UserPointWhereInput
   }
 
+<<<<<<< HEAD
+=======
   /**
    * UserCountOutputType without action
    */
@@ -1871,6 +1911,7 @@ export namespace Prisma {
     where?: ReviewWhereInput
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 
   /**
    * Count Type OrderCountOutputType
@@ -1913,12 +1954,17 @@ export namespace Prisma {
 
   export type AggregateEvent = {
     _count: EventCountAggregateOutputType | null
+<<<<<<< HEAD
+=======
     _avg: EventAvgAggregateOutputType | null
     _sum: EventSumAggregateOutputType | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _min: EventMinAggregateOutputType | null
     _max: EventMaxAggregateOutputType | null
   }
 
+<<<<<<< HEAD
+=======
   export type EventAvgAggregateOutputType = {
     coupon_seat: number | null
   }
@@ -1927,6 +1973,7 @@ export namespace Prisma {
     coupon_seat: number | null
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EventMinAggregateOutputType = {
     id: string | null
     event_name: string | null
@@ -1942,7 +1989,10 @@ export namespace Prisma {
     event_preview: string | null
     createdAt: Date | null
     updatedAt: Date | null
+<<<<<<< HEAD
+=======
     coupon_seat: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory | null
     organizerId: string | null
   }
@@ -1962,7 +2012,10 @@ export namespace Prisma {
     event_preview: string | null
     createdAt: Date | null
     updatedAt: Date | null
+<<<<<<< HEAD
+=======
     coupon_seat: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory | null
     organizerId: string | null
   }
@@ -1982,13 +2035,18 @@ export namespace Prisma {
     event_preview: number
     createdAt: number
     updatedAt: number
+<<<<<<< HEAD
+=======
     coupon_seat: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: number
     organizerId: number
     _all: number
   }
 
 
+<<<<<<< HEAD
+=======
   export type EventAvgAggregateInputType = {
     coupon_seat?: true
   }
@@ -1997,6 +2055,7 @@ export namespace Prisma {
     coupon_seat?: true
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EventMinAggregateInputType = {
     id?: true
     event_name?: true
@@ -2012,7 +2071,10 @@ export namespace Prisma {
     event_preview?: true
     createdAt?: true
     updatedAt?: true
+<<<<<<< HEAD
+=======
     coupon_seat?: true
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: true
     organizerId?: true
   }
@@ -2032,7 +2094,10 @@ export namespace Prisma {
     event_preview?: true
     createdAt?: true
     updatedAt?: true
+<<<<<<< HEAD
+=======
     coupon_seat?: true
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: true
     organizerId?: true
   }
@@ -2052,7 +2117,10 @@ export namespace Prisma {
     event_preview?: true
     createdAt?: true
     updatedAt?: true
+<<<<<<< HEAD
+=======
     coupon_seat?: true
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: true
     organizerId?: true
     _all?: true
@@ -2096,6 +2164,8 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+<<<<<<< HEAD
+=======
      * Select which fields to average
     **/
     _avg?: EventAvgAggregateInputType
@@ -2108,6 +2178,7 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
      * Select which fields to find the minimum value
     **/
     _min?: EventMinAggregateInputType
@@ -2138,8 +2209,11 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: EventCountAggregateInputType | true
+<<<<<<< HEAD
+=======
     _avg?: EventAvgAggregateInputType
     _sum?: EventSumAggregateInputType
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _min?: EventMinAggregateInputType
     _max?: EventMaxAggregateInputType
   }
@@ -2159,12 +2233,18 @@ export namespace Prisma {
     event_preview: string | null
     createdAt: Date | null
     updatedAt: Date | null
+<<<<<<< HEAD
+    category: $Enums.EventCategory
+    organizerId: string | null
+    _count: EventCountAggregateOutputType | null
+=======
     coupon_seat: number | null
     category: $Enums.EventCategory
     organizerId: string | null
     _count: EventCountAggregateOutputType | null
     _avg: EventAvgAggregateOutputType | null
     _sum: EventSumAggregateOutputType | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _min: EventMinAggregateOutputType | null
     _max: EventMaxAggregateOutputType | null
   }
@@ -2198,14 +2278,20 @@ export namespace Prisma {
     event_preview?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+<<<<<<< HEAD
+=======
     coupon_seat?: boolean
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: boolean
     organizerId?: boolean
     Ticket?: boolean | Event$TicketArgs<ExtArgs>
     Rating?: boolean | Event$RatingArgs<ExtArgs>
     Order?: boolean | Event$OrderArgs<ExtArgs>
     Organizer?: boolean | Event$OrganizerArgs<ExtArgs>
+<<<<<<< HEAD
+=======
     Review?: boolean | Event$ReviewArgs<ExtArgs>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _count?: boolean | EventCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
 
@@ -2224,7 +2310,10 @@ export namespace Prisma {
     event_preview?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+<<<<<<< HEAD
+=======
     coupon_seat?: boolean
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: boolean
     organizerId?: boolean
     Organizer?: boolean | Event$OrganizerArgs<ExtArgs>
@@ -2245,7 +2334,10 @@ export namespace Prisma {
     event_preview?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+<<<<<<< HEAD
+=======
     coupon_seat?: boolean
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: boolean
     organizerId?: boolean
   }
@@ -2255,7 +2347,10 @@ export namespace Prisma {
     Rating?: boolean | Event$RatingArgs<ExtArgs>
     Order?: boolean | Event$OrderArgs<ExtArgs>
     Organizer?: boolean | Event$OrganizerArgs<ExtArgs>
+<<<<<<< HEAD
+=======
     Review?: boolean | Event$ReviewArgs<ExtArgs>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _count?: boolean | EventCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2269,7 +2364,10 @@ export namespace Prisma {
       Rating: Prisma.$RatingPayload<ExtArgs>[]
       Order: Prisma.$OrderPayload<ExtArgs>[]
       Organizer: Prisma.$OrganizerPayload<ExtArgs> | null
+<<<<<<< HEAD
+=======
       Review: Prisma.$ReviewPayload<ExtArgs>[]
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2286,7 +2384,10 @@ export namespace Prisma {
       event_preview: string | null
       createdAt: Date | null
       updatedAt: Date | null
+<<<<<<< HEAD
+=======
       coupon_seat: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       category: $Enums.EventCategory
       organizerId: string | null
     }, ExtArgs["result"]["event"]>
@@ -2657,7 +2758,10 @@ export namespace Prisma {
     Rating<T extends Event$RatingArgs<ExtArgs> = {}>(args?: Subset<T, Event$RatingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany"> | Null>
     Order<T extends Event$OrderArgs<ExtArgs> = {}>(args?: Subset<T, Event$OrderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany"> | Null>
     Organizer<T extends Event$OrganizerArgs<ExtArgs> = {}>(args?: Subset<T, Event$OrganizerArgs<ExtArgs>>): Prisma__OrganizerClient<$Result.GetResult<Prisma.$OrganizerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+<<<<<<< HEAD
+=======
     Review<T extends Event$ReviewArgs<ExtArgs> = {}>(args?: Subset<T, Event$ReviewArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany"> | Null>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2701,7 +2805,10 @@ export namespace Prisma {
     readonly event_preview: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
+<<<<<<< HEAD
+=======
     readonly coupon_seat: FieldRef<"Event", 'Int'>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     readonly category: FieldRef<"Event", 'EventCategory'>
     readonly organizerId: FieldRef<"Event", 'String'>
   }
@@ -3097,6 +3204,8 @@ export namespace Prisma {
   }
 
   /**
+<<<<<<< HEAD
+=======
    * Event.Review
    */
   export type Event$ReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3117,6 +3226,7 @@ export namespace Prisma {
   }
 
   /**
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
    * Event without action
    */
   export type EventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3986,7 +4096,11 @@ export namespace Prisma {
     /**
      * The data needed to create a Ticket.
      */
+<<<<<<< HEAD
+    data: XOR<TicketCreateInput, TicketUncheckedCreateInput>
+=======
     data?: XOR<TicketCreateInput, TicketUncheckedCreateInput>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   /**
@@ -6342,7 +6456,10 @@ export namespace Prisma {
     Rating?: boolean | User$RatingArgs<ExtArgs>
     User_Coupon?: boolean | User$User_CouponArgs<ExtArgs>
     User_Point?: boolean | User$User_PointArgs<ExtArgs>
+<<<<<<< HEAD
+=======
     Review?: boolean | User$ReviewArgs<ExtArgs>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -6379,7 +6496,10 @@ export namespace Prisma {
     Rating?: boolean | User$RatingArgs<ExtArgs>
     User_Coupon?: boolean | User$User_CouponArgs<ExtArgs>
     User_Point?: boolean | User$User_PointArgs<ExtArgs>
+<<<<<<< HEAD
+=======
     Review?: boolean | User$ReviewArgs<ExtArgs>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6391,7 +6511,10 @@ export namespace Prisma {
       Rating: Prisma.$RatingPayload<ExtArgs>[]
       User_Coupon: Prisma.$UserCouponPayload<ExtArgs>[]
       User_Point: Prisma.$UserPointPayload<ExtArgs>[]
+<<<<<<< HEAD
+=======
       Review: Prisma.$ReviewPayload<ExtArgs>[]
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6773,7 +6896,10 @@ export namespace Prisma {
     Rating<T extends User$RatingArgs<ExtArgs> = {}>(args?: Subset<T, User$RatingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany"> | Null>
     User_Coupon<T extends User$User_CouponArgs<ExtArgs> = {}>(args?: Subset<T, User$User_CouponArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserCouponPayload<ExtArgs>, T, "findMany"> | Null>
     User_Point<T extends User$User_PointArgs<ExtArgs> = {}>(args?: Subset<T, User$User_PointArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPointPayload<ExtArgs>, T, "findMany"> | Null>
+<<<<<<< HEAD
+=======
     Review<T extends User$ReviewArgs<ExtArgs> = {}>(args?: Subset<T, User$ReviewArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany"> | Null>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7208,6 +7334,8 @@ export namespace Prisma {
   }
 
   /**
+<<<<<<< HEAD
+=======
    * User.Review
    */
   export type User$ReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7228,6 +7356,7 @@ export namespace Prisma {
   }
 
   /**
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11297,6 +11426,96 @@ export namespace Prisma {
 
 
   /**
+<<<<<<< HEAD
+   * Enums
+   */
+
+  export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
+  };
+
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const EventScalarFieldEnum: {
+    id: 'id',
+    event_name: 'event_name',
+    description: 'description',
+    start_time: 'start_time',
+    end_time: 'end_time',
+    event_date: 'event_date',
+    location: 'location',
+    venue: 'venue',
+    event_type: 'event_type',
+    isActive: 'isActive',
+    event_thumbnail: 'event_thumbnail',
+    event_preview: 'event_preview',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    category: 'category',
+    organizerId: 'organizerId'
+  };
+
+  export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+  export const TicketScalarFieldEnum: {
+    id: 'id',
+    category: 'category',
+    desc: 'desc',
+    seats: 'seats',
+    price: 'price',
+    eventId: 'eventId'
+  };
+
+  export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+  export const OrganizerScalarFieldEnum: {
+    id: 'id',
+    organizer_name: 'organizer_name',
+    email: 'email',
+    password: 'password',
+    avatar: 'avatar',
+    isVerify: 'isVerify'
+  };
+
+  export type OrganizerScalarFieldEnum = (typeof OrganizerScalarFieldEnum)[keyof typeof OrganizerScalarFieldEnum]
+
+
+  export const RatingScalarFieldEnum: {
+    id: 'id',
+    rating: 'rating',
+    comment: 'comment',
+    eventId: 'eventId',
+    userId: 'userId'
+  };
+
+  export type RatingScalarFieldEnum = (typeof RatingScalarFieldEnum)[keyof typeof RatingScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    email: 'email',
+    password: 'password',
+    avatar: 'avatar',
+    isVerify: 'isVerify',
+    ref_code: 'ref_code',
+    ref_by: 'ref_by',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const UserCouponScalarFieldEnum: {
+=======
    * Model Review
    */
 
@@ -12325,6 +12544,7 @@ export namespace Prisma {
 
 
   export const UserCouponScalarFieldEnum: {
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     id: 'id',
     isRedeem: 'isRedeem',
     percentage: 'percentage',
@@ -12373,6 +12593,8 @@ export namespace Prisma {
   export type Order_DetailsScalarFieldEnum = (typeof Order_DetailsScalarFieldEnum)[keyof typeof Order_DetailsScalarFieldEnum]
 
 
+<<<<<<< HEAD
+=======
   export const ReviewScalarFieldEnum: {
     userId: 'userId',
     eventId: 'eventId',
@@ -12384,6 +12606,7 @@ export namespace Prisma {
   export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -12477,30 +12700,54 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
+<<<<<<< HEAD
    * Reference to a field of type 'EventCategory'
    */
   export type EnumEventCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventCategory'>
+=======
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     
 
 
   /**
+<<<<<<< HEAD
    * Reference to a field of type 'EventCategory[]'
    */
   export type ListEnumEventCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventCategory[]'>
+=======
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
+    
+
+
+  /**
+<<<<<<< HEAD
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+=======
+   * Reference to a field of type 'EventCategory'
+   */
+  export type EnumEventCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventCategory'>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
+    
+
+
+  /**
+<<<<<<< HEAD
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+=======
+   * Reference to a field of type 'EventCategory[]'
+   */
+  export type ListEnumEventCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventCategory[]'>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     
 
 
@@ -12519,6 +12766,8 @@ export namespace Prisma {
 
 
   /**
+<<<<<<< HEAD
+=======
    * Reference to a field of type 'RatingRange'
    */
   export type EnumRatingRangeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RatingRange'>
@@ -12533,6 +12782,7 @@ export namespace Prisma {
 
 
   /**
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12567,14 +12817,20 @@ export namespace Prisma {
     event_preview?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeNullableFilter<"Event"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"Event"> | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: IntNullableFilter<"Event"> | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFilter<"Event"> | $Enums.EventCategory
     organizerId?: StringNullableFilter<"Event"> | string | null
     Ticket?: TicketListRelationFilter
     Rating?: RatingListRelationFilter
     Order?: OrderListRelationFilter
     Organizer?: XOR<OrganizerNullableScalarRelationFilter, OrganizerWhereInput> | null
+<<<<<<< HEAD
+=======
     Review?: ReviewListRelationFilter
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventOrderByWithRelationInput = {
@@ -12592,14 +12848,20 @@ export namespace Prisma {
     event_preview?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
+<<<<<<< HEAD
+=======
     coupon_seat?: SortOrderInput | SortOrder
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: SortOrder
     organizerId?: SortOrderInput | SortOrder
     Ticket?: TicketOrderByRelationAggregateInput
     Rating?: RatingOrderByRelationAggregateInput
     Order?: OrderOrderByRelationAggregateInput
     Organizer?: OrganizerOrderByWithRelationInput
+<<<<<<< HEAD
+=======
     Review?: ReviewOrderByRelationAggregateInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventWhereUniqueInput = Prisma.AtLeast<{
@@ -12620,14 +12882,20 @@ export namespace Prisma {
     event_preview?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeNullableFilter<"Event"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"Event"> | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: IntNullableFilter<"Event"> | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFilter<"Event"> | $Enums.EventCategory
     organizerId?: StringNullableFilter<"Event"> | string | null
     Ticket?: TicketListRelationFilter
     Rating?: RatingListRelationFilter
     Order?: OrderListRelationFilter
     Organizer?: XOR<OrganizerNullableScalarRelationFilter, OrganizerWhereInput> | null
+<<<<<<< HEAD
+=======
     Review?: ReviewListRelationFilter
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }, "id" | "event_name">
 
   export type EventOrderByWithAggregationInput = {
@@ -12645,6 +12913,13 @@ export namespace Prisma {
     event_preview?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
+<<<<<<< HEAD
+    category?: SortOrder
+    organizerId?: SortOrderInput | SortOrder
+    _count?: EventCountOrderByAggregateInput
+    _max?: EventMaxOrderByAggregateInput
+    _min?: EventMinOrderByAggregateInput
+=======
     coupon_seat?: SortOrderInput | SortOrder
     category?: SortOrder
     organizerId?: SortOrderInput | SortOrder
@@ -12653,6 +12928,7 @@ export namespace Prisma {
     _max?: EventMaxOrderByAggregateInput
     _min?: EventMinOrderByAggregateInput
     _sum?: EventSumOrderByAggregateInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventScalarWhereWithAggregatesInput = {
@@ -12673,7 +12949,10 @@ export namespace Prisma {
     event_preview?: StringNullableWithAggregatesFilter<"Event"> | string | null
     createdAt?: DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: IntNullableWithAggregatesFilter<"Event"> | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryWithAggregatesFilter<"Event"> | $Enums.EventCategory
     organizerId?: StringNullableWithAggregatesFilter<"Event"> | string | null
   }
@@ -12882,7 +13161,10 @@ export namespace Prisma {
     Rating?: RatingListRelationFilter
     User_Coupon?: UserCouponListRelationFilter
     User_Point?: UserPointListRelationFilter
+<<<<<<< HEAD
+=======
     Review?: ReviewListRelationFilter
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12901,7 +13183,10 @@ export namespace Prisma {
     Rating?: RatingOrderByRelationAggregateInput
     User_Coupon?: UserCouponOrderByRelationAggregateInput
     User_Point?: UserPointOrderByRelationAggregateInput
+<<<<<<< HEAD
+=======
     Review?: ReviewOrderByRelationAggregateInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12923,7 +13208,10 @@ export namespace Prisma {
     Rating?: RatingListRelationFilter
     User_Coupon?: UserCouponListRelationFilter
     User_Point?: UserPointListRelationFilter
+<<<<<<< HEAD
+=======
     Review?: ReviewListRelationFilter
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -13223,6 +13511,8 @@ export namespace Prisma {
     ticketId?: IntWithAggregatesFilter<"Order_Details"> | number
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewWhereInput = {
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
@@ -13282,6 +13572,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Review"> | Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EventCreateInput = {
     id?: string
     event_name?: string | null
@@ -13297,13 +13588,19 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     Ticket?: TicketCreateNestedManyWithoutEventInput
     Rating?: RatingCreateNestedManyWithoutEventInput
     Order?: OrderCreateNestedManyWithoutEventInput
     Organizer?: OrganizerCreateNestedOneWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedCreateInput = {
@@ -13321,13 +13618,19 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     organizerId?: string | null
     Ticket?: TicketUncheckedCreateNestedManyWithoutEventInput
     Rating?: RatingUncheckedCreateNestedManyWithoutEventInput
     Order?: OrderUncheckedCreateNestedManyWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUpdateInput = {
@@ -13345,13 +13648,19 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     Ticket?: TicketUpdateManyWithoutEventNestedInput
     Rating?: RatingUpdateManyWithoutEventNestedInput
     Order?: OrderUpdateManyWithoutEventNestedInput
     Organizer?: OrganizerUpdateOneWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedUpdateInput = {
@@ -13369,13 +13678,19 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     organizerId?: NullableStringFieldUpdateOperationsInput | string | null
     Ticket?: TicketUncheckedUpdateManyWithoutEventNestedInput
     Rating?: RatingUncheckedUpdateManyWithoutEventNestedInput
     Order?: OrderUncheckedUpdateManyWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCreateManyInput = {
@@ -13393,7 +13708,10 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     organizerId?: string | null
   }
@@ -13413,7 +13731,10 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
   }
 
@@ -13432,7 +13753,10 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     organizerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -13441,7 +13765,11 @@ export namespace Prisma {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     Order_Details?: Order_DetailsCreateNestedManyWithoutTicketInput
     Event?: EventCreateNestedOneWithoutTicketInput
   }
@@ -13451,7 +13779,11 @@ export namespace Prisma {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     eventId?: string | null
     Order_Details?: Order_DetailsUncheckedCreateNestedManyWithoutTicketInput
   }
@@ -13480,7 +13812,11 @@ export namespace Prisma {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     eventId?: string | null
   }
 
@@ -13634,7 +13970,10 @@ export namespace Prisma {
     Rating?: RatingCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponCreateNestedManyWithoutUserInput
     User_Point?: UserPointCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedCreateInput = {
@@ -13653,7 +13992,10 @@ export namespace Prisma {
     Rating?: RatingUncheckedCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponUncheckedCreateNestedManyWithoutUserInput
     User_Point?: UserPointUncheckedCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUpdateInput = {
@@ -13672,7 +14014,10 @@ export namespace Prisma {
     Rating?: RatingUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedUpdateInput = {
@@ -13691,7 +14036,10 @@ export namespace Prisma {
     Rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUncheckedUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUncheckedUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCreateManyInput = {
@@ -13984,6 +14332,8 @@ export namespace Prisma {
     ticketId?: IntFieldUpdateOperationsInput | number
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateInput = {
     comment: string
     rating: $Enums.RatingRange
@@ -14038,6 +14388,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14098,6 +14449,8 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+<<<<<<< HEAD
+=======
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -14109,6 +14462,7 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EnumEventCategoryFilter<$PrismaModel = never> = {
     equals?: $Enums.EventCategory | EnumEventCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.EventCategory[] | ListEnumEventCategoryFieldRefInput<$PrismaModel>
@@ -14139,12 +14493,15 @@ export namespace Prisma {
     isNot?: OrganizerWhereInput | null
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewListRelationFilter = {
     every?: ReviewWhereInput
     some?: ReviewWhereInput
     none?: ReviewWhereInput
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -14162,10 +14519,13 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EventCountOrderByAggregateInput = {
     id?: SortOrder
     event_name?: SortOrder
@@ -14181,15 +14541,21 @@ export namespace Prisma {
     event_preview?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+<<<<<<< HEAD
+=======
     coupon_seat?: SortOrder
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: SortOrder
     organizerId?: SortOrder
   }
 
+<<<<<<< HEAD
+=======
   export type EventAvgOrderByAggregateInput = {
     coupon_seat?: SortOrder
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EventMaxOrderByAggregateInput = {
     id?: SortOrder
     event_name?: SortOrder
@@ -14205,7 +14571,10 @@ export namespace Prisma {
     event_preview?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+<<<<<<< HEAD
+=======
     coupon_seat?: SortOrder
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: SortOrder
     organizerId?: SortOrder
   }
@@ -14225,15 +14594,21 @@ export namespace Prisma {
     event_preview?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+<<<<<<< HEAD
+=======
     coupon_seat?: SortOrder
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: SortOrder
     organizerId?: SortOrder
   }
 
+<<<<<<< HEAD
+=======
   export type EventSumOrderByAggregateInput = {
     coupon_seat?: SortOrder
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14312,6 +14687,8 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+<<<<<<< HEAD
+=======
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -14328,6 +14705,7 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EnumEventCategoryWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EventCategory | EnumEventCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.EventCategory[] | ListEnumEventCategoryFieldRefInput<$PrismaModel>
@@ -14349,6 +14727,20 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+<<<<<<< HEAD
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+=======
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type Order_DetailsListRelationFilter = {
     every?: Order_DetailsWhereInput
     some?: Order_DetailsWhereInput
@@ -14419,6 +14811,25 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+<<<<<<< HEAD
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+=======
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EventListRelationFilter = {
     every?: EventWhereInput
     some?: EventWhereInput
@@ -14771,6 +15182,8 @@ export namespace Prisma {
     ticketId?: SortOrder
   }
 
+<<<<<<< HEAD
+=======
   export type EnumRatingRangeFilter<$PrismaModel = never> = {
     equals?: $Enums.RatingRange | EnumRatingRangeFieldRefInput<$PrismaModel>
     in?: $Enums.RatingRange[] | ListEnumRatingRangeFieldRefInput<$PrismaModel>
@@ -14827,6 +15240,7 @@ export namespace Prisma {
     _max?: NestedEnumRatingRangeFilter<$PrismaModel>
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketCreateNestedManyWithoutEventInput = {
     create?: XOR<TicketCreateWithoutEventInput, TicketUncheckedCreateWithoutEventInput> | TicketCreateWithoutEventInput[] | TicketUncheckedCreateWithoutEventInput[]
     connectOrCreate?: TicketCreateOrConnectWithoutEventInput | TicketCreateOrConnectWithoutEventInput[]
@@ -14854,6 +15268,8 @@ export namespace Prisma {
     connect?: OrganizerWhereUniqueInput
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateNestedManyWithoutEventsInput = {
     create?: XOR<ReviewCreateWithoutEventsInput, ReviewUncheckedCreateWithoutEventsInput> | ReviewCreateWithoutEventsInput[] | ReviewUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutEventsInput | ReviewCreateOrConnectWithoutEventsInput[]
@@ -14861,6 +15277,7 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketUncheckedCreateNestedManyWithoutEventInput = {
     create?: XOR<TicketCreateWithoutEventInput, TicketUncheckedCreateWithoutEventInput> | TicketCreateWithoutEventInput[] | TicketUncheckedCreateWithoutEventInput[]
     connectOrCreate?: TicketCreateOrConnectWithoutEventInput | TicketCreateOrConnectWithoutEventInput[]
@@ -14882,6 +15299,8 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUncheckedCreateNestedManyWithoutEventsInput = {
     create?: XOR<ReviewCreateWithoutEventsInput, ReviewUncheckedCreateWithoutEventsInput> | ReviewCreateWithoutEventsInput[] | ReviewUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutEventsInput | ReviewCreateOrConnectWithoutEventsInput[]
@@ -14889,6 +15308,7 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -14913,6 +15333,8 @@ export namespace Prisma {
     set?: boolean
   }
 
+<<<<<<< HEAD
+=======
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -14921,6 +15343,7 @@ export namespace Prisma {
     divide?: number
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type EnumEventCategoryFieldUpdateOperationsInput = {
     set?: $Enums.EventCategory
   }
@@ -14977,6 +15400,8 @@ export namespace Prisma {
     update?: XOR<XOR<OrganizerUpdateToOneWithWhereWithoutEventInput, OrganizerUpdateWithoutEventInput>, OrganizerUncheckedUpdateWithoutEventInput>
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUpdateManyWithoutEventsNestedInput = {
     create?: XOR<ReviewCreateWithoutEventsInput, ReviewUncheckedCreateWithoutEventsInput> | ReviewCreateWithoutEventsInput[] | ReviewUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutEventsInput | ReviewCreateOrConnectWithoutEventsInput[]
@@ -14991,6 +15416,7 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketUncheckedUpdateManyWithoutEventNestedInput = {
     create?: XOR<TicketCreateWithoutEventInput, TicketUncheckedCreateWithoutEventInput> | TicketCreateWithoutEventInput[] | TicketUncheckedCreateWithoutEventInput[]
     connectOrCreate?: TicketCreateOrConnectWithoutEventInput | TicketCreateOrConnectWithoutEventInput[]
@@ -15033,6 +15459,8 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUncheckedUpdateManyWithoutEventsNestedInput = {
     create?: XOR<ReviewCreateWithoutEventsInput, ReviewUncheckedCreateWithoutEventsInput> | ReviewCreateWithoutEventsInput[] | ReviewUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutEventsInput | ReviewCreateOrConnectWithoutEventsInput[]
@@ -15047,6 +15475,7 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type Order_DetailsCreateNestedManyWithoutTicketInput = {
     create?: XOR<Order_DetailsCreateWithoutTicketInput, Order_DetailsUncheckedCreateWithoutTicketInput> | Order_DetailsCreateWithoutTicketInput[] | Order_DetailsUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: Order_DetailsCreateOrConnectWithoutTicketInput | Order_DetailsCreateOrConnectWithoutTicketInput[]
@@ -15067,6 +15496,17 @@ export namespace Prisma {
     connect?: Order_DetailsWhereUniqueInput | Order_DetailsWhereUniqueInput[]
   }
 
+<<<<<<< HEAD
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+=======
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -15215,6 +15655,8 @@ export namespace Prisma {
     connect?: UserPointWhereUniqueInput | UserPointWhereUniqueInput[]
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateNestedManyWithoutUserInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
@@ -15222,6 +15664,7 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type OrderUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
@@ -15250,6 +15693,8 @@ export namespace Prisma {
     connect?: UserPointWhereUniqueInput | UserPointWhereUniqueInput[]
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
@@ -15257,6 +15702,7 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -15317,6 +15763,8 @@ export namespace Prisma {
     deleteMany?: UserPointScalarWhereInput | UserPointScalarWhereInput[]
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUpdateManyWithoutUserNestedInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
@@ -15331,6 +15779,7 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type OrderUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
@@ -15387,6 +15836,8 @@ export namespace Prisma {
     deleteMany?: UserPointScalarWhereInput | UserPointScalarWhereInput[]
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
@@ -15401,6 +15852,7 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type UserCreateNestedOneWithoutUser_CouponInput = {
     create?: XOR<UserCreateWithoutUser_CouponInput, UserUncheckedCreateWithoutUser_CouponInput>
     connectOrCreate?: UserCreateOrConnectWithoutUser_CouponInput
@@ -15539,6 +15991,8 @@ export namespace Prisma {
     update?: XOR<XOR<TicketUpdateToOneWithWhereWithoutOrder_DetailsInput, TicketUpdateWithoutOrder_DetailsInput>, TicketUncheckedUpdateWithoutOrder_DetailsInput>
   }
 
+<<<<<<< HEAD
+=======
   export type UserCreateNestedOneWithoutReviewInput = {
     create?: XOR<UserCreateWithoutReviewInput, UserUncheckedCreateWithoutReviewInput>
     connectOrCreate?: UserCreateOrConnectWithoutReviewInput
@@ -15571,6 +16025,7 @@ export namespace Prisma {
     update?: XOR<XOR<EventUpdateToOneWithWhereWithoutReviewInput, EventUpdateWithoutReviewInput>, EventUncheckedUpdateWithoutReviewInput>
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -15629,6 +16084,8 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+<<<<<<< HEAD
+=======
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -15640,6 +16097,7 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type NestedEnumEventCategoryFilter<$PrismaModel = never> = {
     equals?: $Enums.EventCategory | EnumEventCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.EventCategory[] | ListEnumEventCategoryFieldRefInput<$PrismaModel>
@@ -15692,6 +16150,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+<<<<<<< HEAD
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+=======
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -15734,6 +16206,8 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+<<<<<<< HEAD
+=======
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -15761,6 +16235,7 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type NestedEnumEventCategoryWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EventCategory | EnumEventCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.EventCategory[] | ListEnumEventCategoryFieldRefInput<$PrismaModel>
@@ -15789,6 +16264,7 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
+<<<<<<< HEAD
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
     notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
@@ -15796,6 +16272,41 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+=======
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+<<<<<<< HEAD
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+=======
+    not?: NestedFloatFilter<$PrismaModel> | number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -15840,6 +16351,8 @@ export namespace Prisma {
     _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
+<<<<<<< HEAD
+=======
   export type NestedEnumRatingRangeFilter<$PrismaModel = never> = {
     equals?: $Enums.RatingRange | EnumRatingRangeFieldRefInput<$PrismaModel>
     in?: $Enums.RatingRange[] | ListEnumRatingRangeFieldRefInput<$PrismaModel>
@@ -15857,11 +16370,16 @@ export namespace Prisma {
     _max?: NestedEnumRatingRangeFilter<$PrismaModel>
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketCreateWithoutEventInput = {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     Order_Details?: Order_DetailsCreateNestedManyWithoutTicketInput
   }
 
@@ -15870,7 +16388,11 @@ export namespace Prisma {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     Order_Details?: Order_DetailsUncheckedCreateNestedManyWithoutTicketInput
   }
 
@@ -15963,6 +16485,8 @@ export namespace Prisma {
     create: XOR<OrganizerCreateWithoutEventInput, OrganizerUncheckedCreateWithoutEventInput>
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateWithoutEventsInput = {
     comment: string
     rating: $Enums.RatingRange
@@ -15987,6 +16511,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketUpsertWithWhereUniqueWithoutEventInput = {
     where: TicketWhereUniqueInput
     update: XOR<TicketUpdateWithoutEventInput, TicketUncheckedUpdateWithoutEventInput>
@@ -16102,6 +16627,8 @@ export namespace Prisma {
     isVerify?: BoolFieldUpdateOperationsInput | boolean
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUpsertWithWhereUniqueWithoutEventsInput = {
     where: ReviewWhereUniqueInput
     update: XOR<ReviewUpdateWithoutEventsInput, ReviewUncheckedUpdateWithoutEventsInput>
@@ -16129,6 +16656,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Review"> | Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type Order_DetailsCreateWithoutTicketInput = {
     quantity: number
     subtotal: number
@@ -16166,12 +16694,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     Rating?: RatingCreateNestedManyWithoutEventInput
     Order?: OrderCreateNestedManyWithoutEventInput
     Organizer?: OrganizerCreateNestedOneWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedCreateWithoutTicketInput = {
@@ -16189,12 +16723,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     organizerId?: string | null
     Rating?: RatingUncheckedCreateNestedManyWithoutEventInput
     Order?: OrderUncheckedCreateNestedManyWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCreateOrConnectWithoutTicketInput = {
@@ -16254,12 +16794,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     Rating?: RatingUpdateManyWithoutEventNestedInput
     Order?: OrderUpdateManyWithoutEventNestedInput
     Organizer?: OrganizerUpdateOneWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedUpdateWithoutTicketInput = {
@@ -16277,12 +16823,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     organizerId?: NullableStringFieldUpdateOperationsInput | string | null
     Rating?: RatingUncheckedUpdateManyWithoutEventNestedInput
     Order?: OrderUncheckedUpdateManyWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCreateWithoutOrganizerInput = {
@@ -16300,12 +16852,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     Ticket?: TicketCreateNestedManyWithoutEventInput
     Rating?: RatingCreateNestedManyWithoutEventInput
     Order?: OrderCreateNestedManyWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedCreateWithoutOrganizerInput = {
@@ -16323,12 +16881,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     Ticket?: TicketUncheckedCreateNestedManyWithoutEventInput
     Rating?: RatingUncheckedCreateNestedManyWithoutEventInput
     Order?: OrderUncheckedCreateNestedManyWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCreateOrConnectWithoutOrganizerInput = {
@@ -16375,7 +16939,10 @@ export namespace Prisma {
     event_preview?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeNullableFilter<"Event"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"Event"> | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: IntNullableFilter<"Event"> | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFilter<"Event"> | $Enums.EventCategory
     organizerId?: StringNullableFilter<"Event"> | string | null
   }
@@ -16395,12 +16962,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     Ticket?: TicketCreateNestedManyWithoutEventInput
     Order?: OrderCreateNestedManyWithoutEventInput
     Organizer?: OrganizerCreateNestedOneWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedCreateWithoutRatingInput = {
@@ -16418,12 +16991,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     organizerId?: string | null
     Ticket?: TicketUncheckedCreateNestedManyWithoutEventInput
     Order?: OrderUncheckedCreateNestedManyWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCreateOrConnectWithoutRatingInput = {
@@ -16446,7 +17025,10 @@ export namespace Prisma {
     Order?: OrderCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponCreateNestedManyWithoutUserInput
     User_Point?: UserPointCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedCreateWithoutRatingInput = {
@@ -16464,7 +17046,10 @@ export namespace Prisma {
     Order?: OrderUncheckedCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponUncheckedCreateNestedManyWithoutUserInput
     User_Point?: UserPointUncheckedCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCreateOrConnectWithoutRatingInput = {
@@ -16498,12 +17083,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     Ticket?: TicketUpdateManyWithoutEventNestedInput
     Order?: OrderUpdateManyWithoutEventNestedInput
     Organizer?: OrganizerUpdateOneWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedUpdateWithoutRatingInput = {
@@ -16521,12 +17112,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     organizerId?: NullableStringFieldUpdateOperationsInput | string | null
     Ticket?: TicketUncheckedUpdateManyWithoutEventNestedInput
     Order?: OrderUncheckedUpdateManyWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUpsertWithoutRatingInput = {
@@ -16555,7 +17152,10 @@ export namespace Prisma {
     Order?: OrderUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedUpdateWithoutRatingInput = {
@@ -16573,7 +17173,10 @@ export namespace Prisma {
     Order?: OrderUncheckedUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUncheckedUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUncheckedUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type OrderCreateWithoutUserInput = {
@@ -16682,6 +17285,8 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateWithoutUserInput = {
     comment: string
     rating: $Enums.RatingRange
@@ -16706,6 +17311,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type OrderUpsertWithWhereUniqueWithoutUserInput = {
     where: OrderWhereUniqueInput
     update: XOR<OrderUpdateWithoutUserInput, OrderUncheckedUpdateWithoutUserInput>
@@ -16794,6 +17400,8 @@ export namespace Prisma {
     userId?: StringNullableFilter<"UserPoint"> | string | null
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUpsertWithWhereUniqueWithoutUserInput = {
     where: ReviewWhereUniqueInput
     update: XOR<ReviewUpdateWithoutUserInput, ReviewUncheckedUpdateWithoutUserInput>
@@ -16810,6 +17418,7 @@ export namespace Prisma {
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutUserInput>
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type UserCreateWithoutUser_CouponInput = {
     id?: string
     firstName: string
@@ -16825,7 +17434,10 @@ export namespace Prisma {
     Order?: OrderCreateNestedManyWithoutUserInput
     Rating?: RatingCreateNestedManyWithoutUserInput
     User_Point?: UserPointCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedCreateWithoutUser_CouponInput = {
@@ -16843,7 +17455,10 @@ export namespace Prisma {
     Order?: OrderUncheckedCreateNestedManyWithoutUserInput
     Rating?: RatingUncheckedCreateNestedManyWithoutUserInput
     User_Point?: UserPointUncheckedCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCreateOrConnectWithoutUser_CouponInput = {
@@ -16877,7 +17492,10 @@ export namespace Prisma {
     Order?: OrderUpdateManyWithoutUserNestedInput
     Rating?: RatingUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedUpdateWithoutUser_CouponInput = {
@@ -16895,7 +17513,10 @@ export namespace Prisma {
     Order?: OrderUncheckedUpdateManyWithoutUserNestedInput
     Rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUncheckedUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCreateWithoutUser_PointInput = {
@@ -16913,7 +17534,10 @@ export namespace Prisma {
     Order?: OrderCreateNestedManyWithoutUserInput
     Rating?: RatingCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedCreateWithoutUser_PointInput = {
@@ -16931,7 +17555,10 @@ export namespace Prisma {
     Order?: OrderUncheckedCreateNestedManyWithoutUserInput
     Rating?: RatingUncheckedCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponUncheckedCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCreateOrConnectWithoutUser_PointInput = {
@@ -16965,7 +17592,10 @@ export namespace Prisma {
     Order?: OrderUpdateManyWithoutUserNestedInput
     Rating?: RatingUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedUpdateWithoutUser_PointInput = {
@@ -16983,7 +17613,10 @@ export namespace Prisma {
     Order?: OrderUncheckedUpdateManyWithoutUserNestedInput
     Rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUncheckedUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type Order_DetailsCreateWithoutOrderInput = {
@@ -17023,7 +17656,10 @@ export namespace Prisma {
     Rating?: RatingCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponCreateNestedManyWithoutUserInput
     User_Point?: UserPointCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedCreateWithoutOrderInput = {
@@ -17041,7 +17677,10 @@ export namespace Prisma {
     Rating?: RatingUncheckedCreateNestedManyWithoutUserInput
     User_Coupon?: UserCouponUncheckedCreateNestedManyWithoutUserInput
     User_Point?: UserPointUncheckedCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutUserInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserCreateOrConnectWithoutOrderInput = {
@@ -17064,12 +17703,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     Ticket?: TicketCreateNestedManyWithoutEventInput
     Rating?: RatingCreateNestedManyWithoutEventInput
     Organizer?: OrganizerCreateNestedOneWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedCreateWithoutOrderInput = {
@@ -17087,12 +17732,18 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
     organizerId?: string | null
     Ticket?: TicketUncheckedCreateNestedManyWithoutEventInput
     Rating?: RatingUncheckedCreateNestedManyWithoutEventInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedCreateNestedManyWithoutEventsInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventCreateOrConnectWithoutOrderInput = {
@@ -17142,7 +17793,10 @@ export namespace Prisma {
     Rating?: RatingUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type UserUncheckedUpdateWithoutOrderInput = {
@@ -17160,7 +17814,10 @@ export namespace Prisma {
     Rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
     User_Coupon?: UserCouponUncheckedUpdateManyWithoutUserNestedInput
     User_Point?: UserPointUncheckedUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUpsertWithoutOrderInput = {
@@ -17189,12 +17846,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     Ticket?: TicketUpdateManyWithoutEventNestedInput
     Rating?: RatingUpdateManyWithoutEventNestedInput
     Organizer?: OrganizerUpdateOneWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedUpdateWithoutOrderInput = {
@@ -17212,12 +17875,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     organizerId?: NullableStringFieldUpdateOperationsInput | string | null
     Ticket?: TicketUncheckedUpdateManyWithoutEventNestedInput
     Rating?: RatingUncheckedUpdateManyWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type OrderCreateWithoutOrder_DetailsInput = {
@@ -17252,7 +17921,11 @@ export namespace Prisma {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     Event?: EventCreateNestedOneWithoutTicketInput
   }
 
@@ -17261,7 +17934,11 @@ export namespace Prisma {
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     eventId?: string | null
   }
 
@@ -17332,6 +18009,8 @@ export namespace Prisma {
     eventId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+<<<<<<< HEAD
+=======
   export type UserCreateWithoutReviewInput = {
     id?: string
     firstName: string
@@ -17528,12 +18207,17 @@ export namespace Prisma {
     Order?: OrderUncheckedUpdateManyWithoutEventNestedInput
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketCreateManyEventInput = {
     id?: number
     category?: string | null
     desc?: string | null
     seats?: number | null
+<<<<<<< HEAD
+    price: number
+=======
     price?: number
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type RatingCreateManyEventInput = {
@@ -17554,6 +18238,8 @@ export namespace Prisma {
     userId?: string | null
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateManyEventsInput = {
     userId: string
     comment: string
@@ -17561,6 +18247,7 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type TicketUpdateWithoutEventInput = {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     desc?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17640,6 +18327,8 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUpdateWithoutEventsInput = {
     comment?: StringFieldUpdateOperationsInput | string
     rating?: EnumRatingRangeFieldUpdateOperationsInput | $Enums.RatingRange
@@ -17661,6 +18350,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type Order_DetailsCreateManyTicketInput = {
     quantity: number
     subtotal: number
@@ -17700,7 +18390,10 @@ export namespace Prisma {
     event_preview?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category: $Enums.EventCategory
   }
 
@@ -17719,12 +18412,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     Ticket?: TicketUpdateManyWithoutEventNestedInput
     Rating?: RatingUpdateManyWithoutEventNestedInput
     Order?: OrderUpdateManyWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedUpdateWithoutOrganizerInput = {
@@ -17742,12 +18441,18 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
     Ticket?: TicketUncheckedUpdateManyWithoutEventNestedInput
     Rating?: RatingUncheckedUpdateManyWithoutEventNestedInput
     Order?: OrderUncheckedUpdateManyWithoutEventNestedInput
+<<<<<<< HEAD
+=======
     Review?: ReviewUncheckedUpdateManyWithoutEventsNestedInput
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   }
 
   export type EventUncheckedUpdateManyWithoutOrganizerInput = {
@@ -17765,7 +18470,10 @@ export namespace Prisma {
     event_preview?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
     coupon_seat?: NullableIntFieldUpdateOperationsInput | number | null
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
   }
 
@@ -17803,6 +18511,8 @@ export namespace Prisma {
     expiredAt: Date | string
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewCreateManyUserInput = {
     eventId: string
     comment: string
@@ -17810,6 +18520,7 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type OrderUpdateWithoutUserInput = {
     total_price?: IntFieldUpdateOperationsInput | number
     final_price?: IntFieldUpdateOperationsInput | number
@@ -17910,6 +18621,8 @@ export namespace Prisma {
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+<<<<<<< HEAD
+=======
   export type ReviewUpdateWithoutUserInput = {
     comment?: StringFieldUpdateOperationsInput | string
     rating?: EnumRatingRangeFieldUpdateOperationsInput | $Enums.RatingRange
@@ -17931,6 +18644,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   export type Order_DetailsCreateManyOrderInput = {
     quantity: number
     subtotal: number

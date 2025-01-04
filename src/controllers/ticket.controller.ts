@@ -16,6 +16,20 @@ export class TicketController {
 
   async createTicket(req: Request, res: Response) {
     try {
+<<<<<<< HEAD
+      console.log(req.params.eventId);
+      const eventId = req.params.eventId;
+
+      req.body.eventId = req.params.eventId;
+      const tickets = req.body.tickets;
+      for (let i = 0; i < tickets.length; i++) {
+        tickets[i].eventId = eventId;
+      }
+      await prisma.ticket.createMany({ data: req.body.tickets });
+      res.status(200).send({ message: "Ticket has been created" });
+    } catch (err) {
+      console.log(err);
+=======
       const eventId = req.params.eventId;
       req.body.eventId = eventId;
 
@@ -37,6 +51,7 @@ export class TicketController {
       res.status(200).send({ message: "Tickets have been created" });
     } catch (err) {
       console.error(err);
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       res.status(400).send(err);
     }
   }
