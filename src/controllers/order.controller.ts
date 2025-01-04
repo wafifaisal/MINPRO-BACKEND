@@ -218,18 +218,11 @@ export class OrderController {
         },
       });
 
-<<<<<<< HEAD
       
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       res.status(200).send({ message: "Success" });
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841

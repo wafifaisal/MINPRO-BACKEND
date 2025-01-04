@@ -9,36 +9,20 @@ import handlebars from "handlebars";
 import { generateReferralCode } from "../utils/generateReffCode";
 
 export class AuthController {
-<<<<<<< HEAD
   // Method untuk registrasi pengguna
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   async registerUser(req: Request, res: Response) {
     try {
       const { password, confirmPassword, firstName, lastName, email, ref_by } =
         req.body;
-<<<<<<< HEAD
 
       if (password !== confirmPassword)
         throw { message: "Passwords do not match!" };
 
       const existingUser = await prisma.user.findFirst({ where: { email } });
-=======
-      if (password !== confirmPassword)
-        throw { message: "Passwords do not match!" };
-
-      const existingUser = await prisma.user.findFirst({
-        where: { email },
-      });
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       if (existingUser) throw { message: "Email has already been used" };
 
       const salt = await genSalt(10);
       const hashPassword = await hash(password, salt);
-<<<<<<< HEAD
-
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       const newUser = await prisma.user.create({
         data: {
           firstName,
@@ -74,11 +58,7 @@ export class AuthController {
         });
 
         console.log(
-<<<<<<< HEAD
           `Referral code ${ref_by} linked to new user: ${newUser.id}`,
-=======
-          `Referral code ${ref_by} linked to new user: ${newUser.id}`
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
         );
 
         const pointExpiryDate = new Date();
@@ -92,11 +72,7 @@ export class AuthController {
         });
 
         console.log(
-<<<<<<< HEAD
           `10,000 points added to referrer: ${referrer.id}, expires on ${pointExpiryDate}`,
-=======
-          `10,000 points added to referrer: ${referrer.id}, expires on ${pointExpiryDate}`
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
         );
 
         const couponExpiryDate = new Date();
@@ -110,11 +86,7 @@ export class AuthController {
         });
 
         console.log(
-<<<<<<< HEAD
           `10% discount coupon added for new user: ${newUser.id}, expires on ${couponExpiryDate}`,
-=======
-          `10% discount coupon added for new user: ${newUser.id}, expires on ${couponExpiryDate}`
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
         );
       }
 
@@ -122,19 +94,11 @@ export class AuthController {
       const token = sign(payload, process.env.JWT_KEY!, { expiresIn: "10m" });
       const link = `${process.env.BASE_URL_FE}/verify/${token}`;
 
-<<<<<<< HEAD
       const templatePath = path.join(__dirname, "../templates/verifyUser.hbs");
       const templateSource = fs.readFileSync(templatePath, "utf-8");
       const compiledTemplate = handlebars.compile(templateSource);
       const html = compiledTemplate({ firstName, link });
       const nodemailer = require('nodemailer');
-=======
-      const templatePath = path.join(__dirname, "../templates/verify.hbs");
-      const templateSource = fs.readFileSync(templatePath, "utf-8");
-      const compiledTemplate = handlebars.compile(templateSource);
-      const html = compiledTemplate({ firstName, link });
-
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -157,17 +121,10 @@ export class AuthController {
     }
   }
 
-<<<<<<< HEAD
   // Method untuk login
   async loginUser(req: Request, res: Response) {
     try {
       const { data, password } = req.body;
-=======
-  async loginUser(req: Request, res: Response) {
-    try {
-      const { data, password } = req.body;
-      console.log(req.body);
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
       const user = await prisma.user.findFirst({
         where: {
           OR: [{ email: data }, { password: data }],
@@ -208,10 +165,7 @@ export class AuthController {
     }
   }
 
-<<<<<<< HEAD
   // Method untuk verifikasi pengguna
-=======
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   async verifyUser(req: Request, res: Response) {
     try {
       const { token } = req.params;
