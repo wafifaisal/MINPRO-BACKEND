@@ -12,13 +12,12 @@ class UserRouter {
         this.initializeRoutes();
     }
     initializeRoutes() {
-        this.router.get("/", verify_1.verifyToken, verify_1.checkAdmin, this.userController.getUsers);
+        this.router.get("/", verify_1.verifyToken, this.userController.getUsers);
         this.router.get("/profile", verify_1.verifyToken, this.userController.getUserId);
-        this.router.post("/", this.userController.createUser);
         this.router.patch("/avatar", verify_1.verifyToken, (0, uploader_1.uploader)("diskStorage", "avatar-", "/avatar").single("file"), this.userController.editAvatar);
         this.router.patch("/avatar-cloud", verify_1.verifyToken, (0, uploader_1.uploader)("memoryStorage", "avatar").single("file"), this.userController.editAvatarCloud);
-        this.router.patch("/:id", this.userController.editUser);
-        this.router.delete("/:id", this.userController.deleteUser);
+        this.router.patch("/:id", verify_1.verifyToken, this.userController.editUser);
+        this.router.delete("/:id", verify_1.verifyToken, this.userController.deleteUser);
     }
     getRouter() {
         return this.router;

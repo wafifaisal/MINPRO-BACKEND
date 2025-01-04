@@ -78,6 +78,8 @@ class EventController {
                         event_thumbnail: true,
                         event_preview: true,
                         venue: true,
+                        event_type: true,
+                        coupon_seat: true,
                         Ticket: {
                             select: {
                                 id: true,
@@ -113,25 +115,36 @@ class EventController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (!req.file)
-                    throw { message: "thumbnail empty" };
-                const { secure_url } = yield (0, cloudinary_1.cloudinaryUpload)(req.file, "event");
-                const { event_name, description, location, venue, start_time, end_time, event_date, event_type, category, event_preview, } = req.body;
+                    throw { message: "Image is required" };
+                // Proses file dan upload ke Cloudinary
+                const file = req.file;
+                const { secure_url } = yield (0, cloudinary_1.cloudinaryUpload)(file, "event");
+                // Mengambil properti dari req.body secara eksplisit
+                const { event_name, description, location, venue, start_time, end_time, event_date, event_type, category, event_preview, coupon_seat, } = req.body;
+                //const organizerId = req.organizer?.id.toString();
+                // console.log("ORGANIZER ID : ", organizerId);
+                const couponSeat = coupon_seat ? Number(coupon_seat) : undefined;
+                // Data yang akan dikirim ke database
+                const eventData = {
+                    event_name,
+                    event_thumbnail: secure_url,
+                    description,
+                    venue,
+                    location,
+                    start_time,
+                    end_time,
+                    event_type,
+                    category,
+                    event_date,
+                    event_preview,
+                    coupon_seat: couponSeat,
+                    //   organizerId,
+                };
+                // Simpan ke database
                 const { id } = yield prisma.event.create({
-                    data: {
-                        event_name,
-                        event_thumbnail: secure_url,
-                        description,
-                        venue,
-                        location,
-                        start_time,
-                        end_time,
-                        event_type,
-                        category,
-                        event_date,
-                        event_preview,
-                    },
+                    data: eventData,
                 });
-                res.status(200).send({ message: "event created", event_id: id });
+                res.status(200).send({ message: "event created", eventId: id });
             }
             catch (err) {
                 console.log(err);

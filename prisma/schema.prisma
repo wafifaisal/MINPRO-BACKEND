@@ -109,7 +109,7 @@ model User {
   lastName    String
   email       String       @unique
   password    String
-  avatar      String?
+  avatar      String?      @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1735131879/HYPETIX-removebg-preview_qxyuj5.png")
   isVerify    Boolean      @default(false)
   ref_code    String
   ref_by      String?
