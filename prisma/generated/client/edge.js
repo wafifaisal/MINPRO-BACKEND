@@ -264,7 +264,9 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
+
       "value": "E:\\minpro-BE-Wafi\\minpro-BE-Wafi\\prisma\\generated\\client",
+
       "fromEnvVar": null
     },
     "config": {
@@ -273,7 +275,9 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
+
         "value": "windows",
+
         "native": true
       },
       {
@@ -282,11 +286,13 @@ const config = {
       }
     ],
     "previewFeatures": [],
+
     "sourceFilePath": "E:\\minpro-BE-Wafi\\minpro-BE-Wafi\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": null
+
   },
   "relativePath": "../..",
   "clientVersion": "6.1.0",

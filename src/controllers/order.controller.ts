@@ -217,7 +217,6 @@ export class OrderController {
           status: statusOrder,
         },
       });
-
       res.status(200).send({ message: "Success" });
     } catch (err) {
       console.log(err);

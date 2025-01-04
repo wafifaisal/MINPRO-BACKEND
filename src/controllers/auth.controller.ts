@@ -58,7 +58,7 @@ export class AuthController {
         });
 
         console.log(
-          `Referral code ${ref_by} linked to new user: ${newUser.id}`
+          `Referral code ${ref_by} linked to new user: ${newUser.id}`,
         );
 
         const pointExpiryDate = new Date();
@@ -72,7 +72,9 @@ export class AuthController {
         });
 
         console.log(
-          `10,000 points added to referrer: ${referrer.id}, expires on ${pointExpiryDate}`
+
+          `10,000 points added to referrer: ${referrer.id}, expires on ${pointExpiryDate}`,
+
         );
 
         const couponExpiryDate = new Date();
@@ -86,7 +88,9 @@ export class AuthController {
         });
 
         console.log(
-          `10% discount coupon added for new user: ${newUser.id}, expires on ${couponExpiryDate}`
+
+          `10% discount coupon added for new user: ${newUser.id}, expires on ${couponExpiryDate}`,
+
         );
       }
 
@@ -98,7 +102,9 @@ export class AuthController {
       const templateSource = fs.readFileSync(templatePath, "utf-8");
       const compiledTemplate = handlebars.compile(templateSource);
       const html = compiledTemplate({ firstName, link });
-      const nodemailer = require("nodemailer");
+
+      const nodemailer = require('nodemailer');
+
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {

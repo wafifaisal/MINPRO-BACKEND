@@ -15,6 +15,7 @@ export class OrderRouter {
     this.router.get("/:id", this.orderController.getOrderId);
     this.router.post("/", this.orderController.createTransaction);
     this.router.post("/midtrans-webhook", this.orderController.midtransWebHook);
+
     this.router.post("/payment", this.orderController.getSnapToken);
   }
 

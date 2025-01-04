@@ -10,6 +10,7 @@ dotenv.config();
 import { OrgAuthRouter } from "./routers/org.router";
 import { TicketRouter } from "./routers/ticket.router";
 import { OrderRouter } from "./routers/order.router";
+import { ReviewRouter } from "./routers/review.router";
 import { UserController } from "./controllers/user.controller";
 
 const PORT: number = 8000;
@@ -24,8 +25,9 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type"],
-  })
+  }),
 );
+
 console.log("CORS Origin:", process.env.BASE_URL_FE); // Debugging CORS
 
 app.get("/api", (req: Request, res: Response) => {
@@ -38,14 +40,17 @@ const userRouter = new UserRouter();
 const authRouter = new AuthRouter();
 const orgAuthRouter = new OrgAuthRouter();
 const orderRouter = new OrderRouter();
+const reviewRouter = new ReviewRouter();
 
-app.use("/api", userRouter.getRouter());
+
 app.use("/api/events", eventRouter.getRouter());
 app.use("/api/tickets", ticketRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/organizer", orgAuthRouter.getRouter());
 app.use("/api/order", orderRouter.getRouter());
+app.use("/api/reviews", reviewRouter.getRouter());
+
 
 console.log(process.env.JWT_KEY);
 

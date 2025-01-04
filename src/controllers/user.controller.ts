@@ -3,6 +3,9 @@ import prisma from "../prisma";
 import { Prisma } from "../../prisma/generated/client";
 
 export class UserController {
+
+  // Method untuk mengambil semua pengguna
+
   async getUsers(req: Request, res: Response) {
     try {
       const { search, page = 1, limit = 5 } = req.query;
@@ -29,6 +32,9 @@ export class UserController {
     }
   }
 
+
+  // Method untuk mengambil data pengguna berdasarkan ID
+
   async getUserId(req: Request, res: Response) {
     try {
       const user = await prisma.user.findUnique({
@@ -41,15 +47,6 @@ export class UserController {
     }
   }
 
-  async createUser(req: Request, res: Response) {
-    try {
-      await prisma.user.create({ data: req.body });
-      res.status(201).send("User created ✅");
-    } catch (err) {
-      console.log(err);
-      res.status(400).send(err);
-    }
-  }
 
   async editUser(req: Request, res: Response) {
     try {
@@ -65,6 +62,8 @@ export class UserController {
     }
   }
 
+
+  // Method untuk menghapus pengguna
   async deleteUser(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -76,6 +75,9 @@ export class UserController {
     }
   }
 
+
+
+  // Method untuk mengedit avatar pengguna
   async editAvatar(req: Request, res: Response) {
     try {
       if (!req.file) throw { message: "file empty" };

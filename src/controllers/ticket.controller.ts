@@ -17,6 +17,7 @@ export class TicketController {
   async createTicket(req: Request, res: Response) {
     const eventId = req.params.eventId;
     try {
+
       console.log(eventId);
 
       // Ensure the eventId is included in the request body
@@ -47,6 +48,7 @@ export class TicketController {
     } catch (err) {
       console.error(err);
       res.status(500).send({ message: "Internal server error", error: err });
+
     }
   }
 }
