@@ -42,6 +42,7 @@ const orgAuthRouter = new OrgAuthRouter();
 const orderRouter = new OrderRouter();
 const reviewRouter = new ReviewRouter();
 
+
 app.use("/api/events", eventRouter.getRouter());
 app.use("/api/tickets", ticketRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
@@ -49,6 +50,7 @@ app.use("/api/auth", authRouter.getRouter());
 app.use("/api/organizer", orgAuthRouter.getRouter());
 app.use("/api/order", orderRouter.getRouter());
 app.use("/api/reviews", reviewRouter.getRouter());
+
 
 console.log(process.env.JWT_KEY);
 

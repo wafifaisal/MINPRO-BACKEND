@@ -1,25 +1,24 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+import { IPayload } from "src/custom";
 
 declare global {
   namespace Express {
     interface Request {
       user?: {
-        id: number;
-        role: string;
-      }
+        id: IPayload;
+        role: IPayload;
+      };
     }
   }
 }
 
-
 export const verifyToken = async (
   req: Request,
-  res: Response, 
+  res: Response,
   next: NextFunction
 ) => {
   try {
-    
     const token = req.cookies?.token;
     if (!token) throw { message: "Unauthorize!" };
 
