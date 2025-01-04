@@ -156,4 +156,8 @@ export class EventController {
       res.status(400).send(err);
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841

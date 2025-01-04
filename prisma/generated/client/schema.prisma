@@ -46,12 +46,20 @@ model Event {
   event_preview   String?
   createdAt       DateTime?     @default(now())
   updatedAt       DateTime?     @updatedAt
+<<<<<<< HEAD
+=======
+  coupon_seat     Int?
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   category        EventCategory
   Ticket          Ticket[]
   Rating          Rating[]
   Order           Order[]
   Organizer       Organizer?    @relation(fields: [organizerId], references: [id])
   organizerId     String?
+<<<<<<< HEAD
+=======
+  Review          Review[]
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 }
 
 model Ticket {
@@ -59,7 +67,11 @@ model Ticket {
   category      String?
   desc          String?
   seats         Int?
+<<<<<<< HEAD
   price         Int
+=======
+  price         Int             @default(0)
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   Order_Details Order_Details[]
   Event         Event?          @relation(fields: [eventId], references: [id])
   eventId       String?
@@ -93,6 +105,17 @@ enum Status {
   cancelled
 }
 
+<<<<<<< HEAD
+=======
+enum RatingRange {
+  ONE   @map("1")
+  TWO   @map("2")
+  THREE @map("3")
+  FOUR  @map("4")
+  FIVE  @map("5")
+}
+
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 model User {
   id          String       @id @default(uuid())
   firstName   String
@@ -107,6 +130,10 @@ model User {
   Rating      Rating[]
   User_Coupon UserCoupon[]
   User_Point  UserPoint[]
+<<<<<<< HEAD
+=======
+  Review      Review[]
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 }
@@ -156,3 +183,18 @@ model Order_Details {
 
   @@id([orderId, ticketId]) // Composite primary key
 }
+<<<<<<< HEAD
+=======
+
+model Review {
+  userId    String
+  eventId   String
+  comment   String
+  rating    RatingRange
+  createdAt DateTime    @default(now())
+  user      User        @relation(fields: [userId], references: [id])
+  events    Event       @relation(fields: [eventId], references: [id])
+
+  @@id([userId, eventId])
+}
+>>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
