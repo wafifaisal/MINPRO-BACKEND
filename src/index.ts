@@ -10,10 +10,7 @@ dotenv.config();
 import { OrgAuthRouter } from "./routers/org.router";
 import { TicketRouter } from "./routers/ticket.router";
 import { OrderRouter } from "./routers/order.router";
-<<<<<<< HEAD
-=======
 import { ReviewRouter } from "./routers/review.router";
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 import { UserController } from "./controllers/user.controller";
 
 const PORT: number = 8000;
@@ -28,12 +25,9 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type"],
-<<<<<<< HEAD
   }),
-=======
-  })
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 );
+
 console.log("CORS Origin:", process.env.BASE_URL_FE); // Debugging CORS
 
 app.get("/api", (req: Request, res: Response) => {
@@ -46,22 +40,15 @@ const userRouter = new UserRouter();
 const authRouter = new AuthRouter();
 const orgAuthRouter = new OrgAuthRouter();
 const orderRouter = new OrderRouter();
-<<<<<<< HEAD
-=======
 const reviewRouter = new ReviewRouter();
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 
-app.use("/api", userRouter.getRouter());
 app.use("/api/events", eventRouter.getRouter());
 app.use("/api/tickets", ticketRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/organizer", orgAuthRouter.getRouter());
 app.use("/api/order", orderRouter.getRouter());
-<<<<<<< HEAD
-=======
 app.use("/api/reviews", reviewRouter.getRouter());
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
 
 console.log(process.env.JWT_KEY);
 
