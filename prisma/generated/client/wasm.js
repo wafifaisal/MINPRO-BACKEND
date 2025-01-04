@@ -172,7 +172,9 @@ exports.Prisma.UserScalarFieldEnum = {
   avatar: 'avatar',
   isVerify: 'isVerify',
   ref_code: 'ref_code',
-  ref_by: 'ref_by'
+  ref_by: 'ref_by',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserCouponScalarFieldEnum = {

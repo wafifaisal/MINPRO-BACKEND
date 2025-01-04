@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/client"
+  provider      = "prisma-client-js"
+  output        = "./generated/client"
+  binaryTargets = ["native", "darwin-arm64"]
 }
 
 datasource db {
@@ -111,12 +112,14 @@ model User {
   avatar      String?
   isVerify    Boolean      @default(false)
   ref_code    String
+  ref_by      String?
+  Order       Order[]
   Rating      Rating[]
   User_Coupon UserCoupon[]
   User_Point  UserPoint[]
-  Order       Order[]
-  ref_by      String?
   Review      Review[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model UserCoupon {
