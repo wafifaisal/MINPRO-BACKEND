@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import { PrismaClient, Prisma } from "../../prisma/generated/client";
 import { cloudinaryUpload } from "../services/cloudinary";
+import { Readable } from "stream";
 
 const prisma = new PrismaClient();
 
@@ -67,6 +68,8 @@ export class EventController {
           event_thumbnail: true,
           event_preview: true,
           venue: true,
+          event_type: true,
+          coupon_seat: true,
           Ticket: {
             select: {
               id: true,
@@ -99,9 +102,13 @@ export class EventController {
 
   async createEvent(req: Request, res: Response) {
     try {
-      if (!req.file) throw { message: "thumbnail empty" };
-      const { secure_url } = await cloudinaryUpload(req.file, "event");
+      if (!req.file) throw { message: "Image is required" };
 
+      // Proses file dan upload ke Cloudinary
+      const file = req.file as Express.Multer.File & { stream: Readable };
+      const { secure_url } = await cloudinaryUpload(file, "event");
+
+      // Mengambil properti dari req.body secara eksplisit
       const {
         event_name,
         description,
@@ -113,25 +120,37 @@ export class EventController {
         event_type,
         category,
         event_preview,
+        coupon_seat,
       } = req.body;
 
+      //const organizerId = req.organizer?.id.toString();
+      // console.log("ORGANIZER ID : ", organizerId);
+
+      const couponSeat = coupon_seat ? Number(coupon_seat) : undefined;
+
+      // Data yang akan dikirim ke database
+      const eventData = {
+        event_name,
+        event_thumbnail: secure_url,
+        description,
+        venue,
+        location,
+        start_time,
+        end_time,
+        event_type,
+        category,
+        event_date,
+        event_preview,
+        coupon_seat: couponSeat,
+        //   organizerId,
+      };
+
+      // Simpan ke database
       const { id } = await prisma.event.create({
-        data: {
-          event_name,
-          event_thumbnail: secure_url,
-          description,
-          venue,
-          location,
-          start_time,
-          end_time,
-          event_type,
-          category,
-          event_date,
-          event_preview,
-        },
+        data: eventData,
       });
 
-      res.status(200).send({ message: "event created", event_id: id });
+      res.status(200).send({ message: "event created", eventId: id });
     } catch (err) {
       console.log(err);
       res.status(400).send(err);

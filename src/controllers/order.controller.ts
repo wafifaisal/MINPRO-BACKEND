@@ -6,7 +6,7 @@ import { requestBody } from "../types/reqBody";
 export class OrderController {
   async createTransaction(req: Request<{}, {}, requestBody>, res: Response) {
     try {
-      const userId = "7095300d-8c70-4cd8-9ba5-61e0b317291a"; // Contoh user ID
+      const userId = "15d455f7-9c74-4581-aca4-e1bb6a171b56"; // Contoh user ID
       const { total_price, final_price, ticketCart } = req.body;
 
       const expiredAt = new Date(Date.now() + 10 * 60000); // Expired in 10 minutes
@@ -133,7 +133,7 @@ export class OrderController {
       });
 
       const user = await prisma.user.findUnique({
-        where: { id: "7095300d-8c70-4cd8-9ba5-61e0b317291a" },
+        where: { id: "15d455f7-9c74-4581-aca4-e1bb6a171b56" },
       });
 
       for (const item of ticketTransaction) {
