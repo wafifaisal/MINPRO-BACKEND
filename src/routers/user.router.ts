@@ -13,6 +13,7 @@ export class UserRouter {
     this.initializeRoutes();
   }
 
+  
   private initializeRoutes() {
     this.router.get("/", verifyToken, checkAdmin, this.userController.getUsers);
     this.router.get("/profile", verifyToken, this.userController.getUserId);
