@@ -8,11 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "baseUrl": ".",
-<<<<<<< HEAD
-    // "types" : ["./src/custom.d.ts"],
-=======
-    "types": ["./src/custom.d.ts"]
->>>>>>> 9823d3efad9c5ef8788719155c1e725e9976f841
+    "types": ["./src/custom.d.ts"],  // Menyertakan file custom.d.ts
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
