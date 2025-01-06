@@ -45,3 +45,4 @@ console.log(process.env.JWT_KEY);
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+exports.default = app;
