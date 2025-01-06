@@ -94,7 +94,7 @@ export class AuthController {
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: email,
-        subject: "Welcome to Blogger",
+        subject: "Welcome to the HYPETIX Platform",
         html,
       });
 
@@ -105,44 +105,35 @@ export class AuthController {
     }
   }
 
-  // Method untuk login
   async loginUser(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
 
-      // Log email input
       console.log("Login email received:", email);
 
-      // Cari user berdasarkan email
       const user = await prisma.user.findUnique({
         where: { email },
       });
 
-      // Log hasil pencarian user
       console.log("User found:", user);
 
       if (!user) throw { message: "Account not found!" };
       if (!user.isVerify) throw { message: "Account is not verified!" };
 
-      // Cek validitas password
       const isValidPassword = await compare(password, user.password);
 
-      // Log validitas password
       console.log("Password valid:", isValidPassword);
 
       if (!isValidPassword) throw { message: "Invalid password" };
 
-      // Buat token JWT
       const payload = { id: user.id };
       const token = sign(payload, process.env.JWT_KEY!, { expiresIn: "1d" });
 
-      // Log token yang dihasilkan
       console.log("Generated token:", token);
 
-      // Kirim respons tanpa cookie
       res.status(200).send({
         message: "Login Successful √",
-        token, // Token dikirim dalam respons JSON
+        token,
         data: {
           id: user.id,
           email: user.email,
@@ -157,7 +148,6 @@ export class AuthController {
     }
   }
 
-  // Method untuk verifikasi pengguna
   async verifyUser(req: Request, res: Response) {
     try {
       const { token } = req.params;

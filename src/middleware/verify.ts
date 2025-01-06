@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-import prisma from "../prisma"; // Prisma client
+import prisma from "../prisma";
 
 declare global {
   namespace Express {
@@ -16,20 +16,18 @@ export const verifyToken = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  const token = req.headers["authorization"]?.split(" ")[1]; // Get token from Authorization header
+  const token = req.headers["authorization"]?.split(" ")[1];
 
   if (!token) {
     res.status(403).send({ message: "Token is required!" });
-    return; // Ensure function ends here
+    return;
   }
 
   try {
-    // Decode the token
     const decoded: { id: string } = verify(token, process.env.JWT_KEY!) as {
       id: string;
     };
 
-    // Check if the token corresponds to a user
     const user = await prisma.user.findUnique({
       where: { id: decoded.id },
       select: {
@@ -37,15 +35,15 @@ export const verifyToken = async (
         firstName: true,
         lastName: true,
         email: true,
-      }, // Fetch specific fields only
+      },
     });
 
     if (user) {
       req.userId = user.id;
-      req.isOrganizer = false; // Not an organizer
-      req.body.userData = user; // Attach user data to the request
+      req.isOrganizer = false;
+      req.body.userData = user; 
       next();
-      return; // Ensure function ends here
+      return; 
     }
 
     // If not found, check if it's an organizer
@@ -55,9 +53,9 @@ export const verifyToken = async (
 
     if (organizer) {
       req.userId = organizer.id;
-      req.isOrganizer = true; // Is an organizer
+      req.isOrganizer = true; 
       next();
-      return; // Ensure function ends here
+      return; 
     }
 
     res.status(403).send({ message: "Invalid token" });

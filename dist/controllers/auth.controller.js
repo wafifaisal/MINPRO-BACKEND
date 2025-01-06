@@ -97,7 +97,7 @@ class AuthController {
                 yield transporter.sendMail({
                     from: process.env.EMAIL_USER,
                     to: email,
-                    subject: "Welcome to Blogger",
+                    subject: "Welcome to the HYPETIX Platform",
                     html,
                 });
                 res.status(201).send({ message: "Registration Successful √" });
@@ -108,34 +108,27 @@ class AuthController {
             }
         });
     }
-    // Method untuk login
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { data, password } = req.body;
-                const user = yield prisma_1.default.user.findFirst({
-                    where: {
-                        OR: [{ email: data }, { id: data }],
-                    },
+                const { email, password } = req.body;
+                console.log("Login email received:", email);
+                const user = yield prisma_1.default.user.findUnique({
+                    where: { email },
                 });
+                console.log("User found:", user);
                 if (!user)
                     throw { message: "Account not found!" };
                 if (!user.isVerify)
                     throw { message: "Account is not verified!" };
-                const isValidPass = yield (0, bcrypt_1.compare)(password, user.password);
-                if (!isValidPass)
-                    throw { message: "Incorrect Password" };
+                const isValidPassword = yield (0, bcrypt_1.compare)(password, user.password);
+                console.log("Password valid:", isValidPassword);
+                if (!isValidPassword)
+                    throw { message: "Invalid password" };
                 const payload = { id: user.id };
                 const token = (0, jsonwebtoken_1.sign)(payload, process.env.JWT_KEY, { expiresIn: "1d" });
-                res
-                    .status(200)
-                    .cookie("token", token, {
-                    httpOnly: true,
-                    maxAge: 24 * 3600 * 1000,
-                    path: "/",
-                    secure: process.env.NODE_ENV === "production",
-                })
-                    .send({
+                console.log("Generated token:", token);
+                res.status(200).send({
                     message: "Login Successful √",
                     token,
                     data: {
@@ -148,12 +141,11 @@ class AuthController {
                 });
             }
             catch (err) {
-                console.error(err);
+                console.error("Error during login:", err);
                 res.status(400).send(err);
             }
         });
     }
-    // Method untuk verifikasi pengguna
     verifyUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
