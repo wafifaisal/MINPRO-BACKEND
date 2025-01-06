@@ -17,10 +17,28 @@ const prisma_1 = __importDefault(require("../prisma"));
 class ReviewController {
     createReview(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+<<<<<<< HEAD
+            try {
+                const userId = "379d85ed-5f54-4336-a871-321c5c18c2fc";
+                const { comment, rating } = req.body;
+                const user = yield prisma_1.default.review.findFirst({
+                    where: { userId: userId },
+                });
+                if (user)
+                    throw { message: "You are just granted to give comment once" };
+                yield prisma_1.default.review.create({
+                    data: {
+                        userId: userId,
+                        eventId: req.params.id,
+                        rating: rating,
+                        comment: comment,
+                    },
+=======
             var _a;
             try {
                 yield prisma_1.default.review.create({
                     data: Object.assign(Object.assign({}, req.body), { userId: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id, eventId: req.params.id }),
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                 });
                 res.status(200).send({ message: "Review Created" });
             }

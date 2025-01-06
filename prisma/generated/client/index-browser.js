@@ -203,6 +203,8 @@ exports.Prisma.OrderScalarFieldEnum = {
   createdAt: 'createdAt',
   expiredAt: 'expiredAt',
   redirect_url: 'redirect_url',
+  userCoupon: 'userCoupon',
+  userPoint: 'userPoint',
   userId: 'userId',
   eventId: 'eventId'
 };
@@ -260,14 +262,6 @@ exports.Status = exports.$Enums.Status = {
   pending: 'pending',
   success: 'success',
   cancelled: 'cancelled'
-};
-
-exports.RatingRange = exports.$Enums.RatingRange = {
-  ONE: 'ONE',
-  TWO: 'TWO',
-  THREE: 'THREE',
-  FOUR: 'FOUR',
-  FIVE: 'FIVE'
 };
 
 exports.Prisma.ModelName = {

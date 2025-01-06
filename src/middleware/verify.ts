@@ -14,7 +14,7 @@ declare global {
 export const verifyToken = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   const token = req.headers["authorization"]?.split(" ")[1];
 
@@ -41,9 +41,9 @@ export const verifyToken = async (
     if (user) {
       req.userId = user.id;
       req.isOrganizer = false;
-      req.body.userData = user; 
+      req.body.userData = user;
       next();
-      return; 
+      return;
     }
 
     // If not found, check if it's an organizer
@@ -53,9 +53,9 @@ export const verifyToken = async (
 
     if (organizer) {
       req.userId = organizer.id;
-      req.isOrganizer = true; 
+      req.isOrganizer = true;
       next();
-      return; 
+      return;
     }
 
     res.status(403).send({ message: "Invalid token" });

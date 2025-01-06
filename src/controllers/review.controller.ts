@@ -4,9 +4,22 @@ import prisma from "../prisma";
 export class ReviewController {
   async createReview(req: Request, res: Response) {
     try {
-      await prisma.review.create({
-        data: { ...req.body, userId: req.user?.id, eventId: req.params.id },
+      const userId = "379d85ed-5f54-4336-a871-321c5c18c2fc";
+      const { comment, rating } = req.body;
+      const user = await prisma.review.findFirst({
+        where: { userId: userId },
       });
+      if (user) throw { message: "You are just granted to give comment once" };
+
+      await prisma.review.create({
+        data: {
+          userId: userId,
+          eventId: req.params.id,
+          rating: rating,
+          comment: comment,
+        },
+      });
+
       res.status(200).send({ message: "Review Created" });
     } catch (err) {
       console.log(err);

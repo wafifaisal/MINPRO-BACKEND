@@ -21,6 +21,10 @@ const fs_1 = __importDefault(require("fs"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const handlebars_1 = __importDefault(require("handlebars"));
 class OrganizerController {
+<<<<<<< HEAD
+    // Metode untuk registrasi organizer
+=======
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
     registerOrg(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

@@ -16,6 +16,7 @@ exports.UserController = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
 const cloudinary_1 = require("../services/cloudinary");
 class UserController {
+    // Method untuk mengambil semua pengguna
     getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -42,6 +43,7 @@ class UserController {
             }
         });
     }
+    // Method untuk mengambil data pengguna berdasarkan ID
     getUserId(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -49,7 +51,11 @@ class UserController {
                 const user = yield prisma_1.default.user.findUnique({
                     where: { id: req.userId },
                 });
+<<<<<<< HEAD
+                res.status(200).send({ user });
+=======
                 res.status(200).send({ result: user });
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
             }
             catch (err) {
                 console.log(err);

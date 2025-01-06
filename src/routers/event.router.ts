@@ -13,7 +13,6 @@ export class EventRouter {
   }
   private initializeRoutes() {
     this.router.get("/", this.eventController.getEvent);
-
     this.router.post(
       "/",
       upload.single("event_thumbnail"),
