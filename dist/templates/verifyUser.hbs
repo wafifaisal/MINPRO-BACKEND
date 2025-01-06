@@ -1,19 +1,16 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Email Verification</title>
   </head>
+  <script>
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FE; 
+    const verifyLink =`${baseUrl}/events`; 
+   // ke DOM document.write(`<a href="${verifyLink}">VerifyEmail</a>`);
+  </script>
   <body>
-<<<<<<< HEAD
     <h1>Verify Your Email</h1>
     <p>Click the link below to verify your email:</p>
-    <a href="{{verificationLink}}">Verify Email</a>
-=======
-    <body>
-    <h1>Halo {{firstname lastName}}</h1>
-    <h2>Welcome to Blogger App</h2>
-    <a href={{link}}>
-        <button>Verify</button>
->>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
+    <a href="{{verifyLink}}" >Verify Email</a>
+
   </body>
 </html>
