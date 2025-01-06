@@ -10,15 +10,20 @@ import { OrgAuthRouter } from "./routers/org.router";
 import { TicketRouter } from "./routers/ticket.router";
 import { OrderRouter } from "./routers/order.router";
 import { ReviewRouter } from "./routers/review.router";
-import { UserController } from "./controllers/user.controller";
+// import { UserController } from "./controllers/user.controller";
 
 const PORT: number = 8000;
 const app: Application = express();
-const userController = new UserController();
 export const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());
 app.use(cors());
+
+// Middleware untuk log setiap request yang diterima
+// app.use((req, res, next) => {
+//   console.log(`${req.method} ${req.url}`); // Log method dan URL request
+//   next();
+// });
 
 console.log("CORS Origin:", process.env.BASE_URL_FE);
 

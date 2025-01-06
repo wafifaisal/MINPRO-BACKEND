@@ -14,26 +14,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
-const prisma_1 = __importDefault(require("../prisma")); // Prisma client
+const prisma_1 = __importDefault(require("../prisma"));
 const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const token = (_a = req.headers["authorization"]) === null || _a === void 0 ? void 0 : _a.split(" ")[1]; // Get token from Authorization header
+    const token = (_a = req.headers["authorization"]) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
     if (!token) {
         res.status(403).send({ message: "Token is required!" });
-        return; // Ensure function ends here
+        return;
     }
     try {
-        // Decode the token
         const decoded = (0, jsonwebtoken_1.verify)(token, process.env.JWT_KEY);
-        // Check if the token corresponds to a user
         const user = yield prisma_1.default.user.findUnique({
             where: { id: decoded.id },
+            select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
         });
         if (user) {
             req.userId = user.id;
-            req.isOrganizer = false; // Not an organizer
+            req.isOrganizer = false;
+            req.body.userData = user;
             next();
-            return; // Ensure function ends here
+            return;
         }
         // If not found, check if it's an organizer
         const organizer = yield prisma_1.default.organizer.findUnique({
@@ -41,9 +46,9 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         });
         if (organizer) {
             req.userId = organizer.id;
-            req.isOrganizer = true; // Is an organizer
+            req.isOrganizer = true;
             next();
-            return; // Ensure function ends here
+            return;
         }
         res.status(403).send({ message: "Invalid token" });
     }

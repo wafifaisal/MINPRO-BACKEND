@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import prisma from "../prisma";
 import { Prisma } from "../../prisma/generated/client";
+import { cloudinaryUpload } from "../services/cloudinary";
+import { Readable } from "stream";
 
 export class UserController {
-
-  // Method untuk mengambil semua pengguna
-
   async getUsers(req: Request, res: Response) {
     try {
       const { search, page = 1, limit = 5 } = req.query;
@@ -32,21 +31,19 @@ export class UserController {
     }
   }
 
-
-  // Method untuk mengambil data pengguna berdasarkan ID
-
   async getUserId(req: Request, res: Response) {
     try {
+      console.log("userId:", req.userId);
       const user = await prisma.user.findUnique({
-        where: { id: req.user?.id?.toString() },
+        where: { id: req.userId },
       });
-      res.status(200).send({ user });
+
+      res.status(200).send({ result: user });
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
     }
   }
-
 
   async editUser(req: Request, res: Response) {
     try {
@@ -62,7 +59,6 @@ export class UserController {
     }
   }
 
-
   // Method untuk menghapus pengguna
   async deleteUser(req: Request, res: Response) {
     try {
@@ -75,15 +71,14 @@ export class UserController {
     }
   }
 
-
-
   // Method untuk mengedit avatar pengguna
   async editAvatar(req: Request, res: Response) {
     try {
-      if (!req.file) throw { message: "file empty" };
-      const link = `http://localhost:8000/api/public/avatar/${req.file.filename}`;
+      // if (!req.file) throw { message: "file empty" };
+      const file = req.file as Express.Multer.File & { stream: Readable };
+      const { secure_url } = await cloudinaryUpload(file, "avatar");
       await prisma.user.update({
-        data: { avatar: link },
+        data: { avatar: secure_url },
         where: { id: req.user?.id?.toString() },
       });
       res.status(200).send({ message: "avatar edited !" });

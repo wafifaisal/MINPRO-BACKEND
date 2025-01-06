@@ -2,7 +2,7 @@ import "express";
 import * as jwt from "jsonwebtoken";
 
 export type IPayload = {
-  id: number;
+  id: string;
   role: "user" | "organizer";
 };
 
@@ -17,7 +17,7 @@ declare global {
 
 declare module "jsonwebtoken" {
   export interface RoleIdJwtPayload extends jwt.JwtPayload {
-    id: number;
+    id: string;
     role: "organizer" | "user";
   }
 }

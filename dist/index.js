@@ -16,19 +16,18 @@ const org_router_1 = require("./routers/org.router");
 const ticket_router_1 = require("./routers/ticket.router");
 const order_router_1 = require("./routers/order.router");
 const review_router_1 = require("./routers/review.router");
-const user_controller_1 = require("./controllers/user.controller");
+// import { UserController } from "./controllers/user.controller";
 const PORT = 8000;
 const app = (0, express_1.default)();
-const userController = new user_controller_1.UserController();
 exports.upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
 app.use(express_1.default.json());
-app.use((0, cors_1.default)({
-    origin: process.env.BASE_URL_FE,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type"],
-}));
-console.log("CORS Origin:", process.env.BASE_URL_FE); // Debugging CORS
+app.use((0, cors_1.default)());
+// Middleware untuk log setiap request yang diterima
+// app.use((req, res, next) => {
+//   console.log(`${req.method} ${req.url}`); // Log method dan URL request
+//   next();
+// });
+console.log("CORS Origin:", process.env.BASE_URL_FE);
 app.get("/api", (req, res) => {
     res.status(200).send("Welcome to my API");
 });
