@@ -35,18 +35,14 @@ export class AuthController {
           ref_by: null,
         },
       });
-      console.log("New User Created:", newUser);
 
       const refCode = generateReferralCode(newUser.firstName, newUser.id);
       await prisma.user.update({
         where: { id: newUser.id },
         data: { ref_code: refCode },
       });
-      console.log("Referral Code Updated:", refCode);
 
       if (ref_by) {
-        console.log("Processing referral...");
-
         const referrer = await prisma.user.findFirst({
           where: { ref_code: ref_by },
         });
@@ -56,10 +52,6 @@ export class AuthController {
           where: { id: newUser.id },
           data: { ref_by: ref_by },
         });
-
-        console.log(
-          `Referral code ${ref_by} linked to new user: ${newUser.id}`,
-        );
 
         const pointExpiryDate = new Date();
         pointExpiryDate.setMonth(pointExpiryDate.getMonth() + 3);
@@ -71,12 +63,6 @@ export class AuthController {
           },
         });
 
-        console.log(
-
-          `10,000 points added to referrer: ${referrer.id}, expires on ${pointExpiryDate}`,
-
-        );
-
         const couponExpiryDate = new Date();
         couponExpiryDate.setMonth(couponExpiryDate.getMonth() + 3);
         await prisma.userCoupon.create({
@@ -86,12 +72,6 @@ export class AuthController {
             expiredAt: couponExpiryDate,
           },
         });
-
-        console.log(
-
-          `10% discount coupon added for new user: ${newUser.id}, expires on ${couponExpiryDate}`,
-
-        );
       }
 
       const payload = { id: newUser.id };
@@ -102,8 +82,6 @@ export class AuthController {
       const templateSource = fs.readFileSync(templatePath, "utf-8");
       const compiledTemplate = handlebars.compile(templateSource);
       const html = compiledTemplate({ firstName, link });
-
-      const nodemailer = require('nodemailer');
 
       const transporter = nodemailer.createTransport({
         service: "gmail",
@@ -116,7 +94,7 @@ export class AuthController {
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: email,
-        subject: "Welcome to Blogger",
+        subject: "Welcome to the HYPETIX Platform",
         html,
       });
 
@@ -127,51 +105,49 @@ export class AuthController {
     }
   }
 
-  // Method untuk login
   async loginUser(req: Request, res: Response) {
     try {
-      const { data, password } = req.body;
-      const user = await prisma.user.findFirst({
-        where: {
-          OR: [{ email: data }, { password: data }],
-        },
+      const { email, password } = req.body;
+
+      console.log("Login email received:", email);
+
+      const user = await prisma.user.findUnique({
+        where: { email },
       });
+
+      console.log("User found:", user);
 
       if (!user) throw { message: "Account not found!" };
       if (!user.isVerify) throw { message: "Account is not verified!" };
 
-      const isValidPass = await compare(password, user.password);
-      if (!isValidPass) throw { message: "Incorrect Password" };
+      const isValidPassword = await compare(password, user.password);
+
+      console.log("Password valid:", isValidPassword);
+
+      if (!isValidPassword) throw { message: "Invalid password" };
 
       const payload = { id: user.id };
       const token = sign(payload, process.env.JWT_KEY!, { expiresIn: "1d" });
 
-      res
-        .status(200)
-        .cookie("token", token, {
-          httpOnly: true,
-          maxAge: 24 * 3600 * 1000,
-          path: "/",
-          secure: process.env.NODE_ENV === "production",
-        })
-        .send({
-          message: "Login Successful √",
-          token,
-          data: {
-            id: user.id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            avatar: user.avatar,
-          },
-        });
+      console.log("Generated token:", token);
+
+      res.status(200).send({
+        message: "Login Successful √",
+        token,
+        data: {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          avatar: user.avatar,
+        },
+      });
     } catch (err) {
-      console.error(err);
+      console.error("Error during login:", err);
       res.status(400).send(err);
     }
   }
 
-  // Method untuk verifikasi pengguna
   async verifyUser(req: Request, res: Response) {
     try {
       const { token } = req.params;

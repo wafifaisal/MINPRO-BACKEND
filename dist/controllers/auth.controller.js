@@ -45,15 +45,16 @@ class AuthController {
                         ref_by: null,
                     },
                 });
-                console.log("New User Created:", newUser);
                 const refCode = (0, generateReffCode_1.generateReferralCode)(newUser.firstName, newUser.id);
                 yield prisma_1.default.user.update({
                     where: { id: newUser.id },
                     data: { ref_code: refCode },
                 });
-                console.log("Referral Code Updated:", refCode);
                 if (ref_by) {
+<<<<<<< HEAD
                     console.log("Processing referral...");
+=======
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                     const referrer = yield prisma_1.default.user.findFirst({
                         where: { ref_code: ref_by },
                     });
@@ -63,7 +64,6 @@ class AuthController {
                         where: { id: newUser.id },
                         data: { ref_by: ref_by },
                     });
-                    console.log(`Referral code ${ref_by} linked to new user: ${newUser.id}`);
                     const pointExpiryDate = new Date();
                     pointExpiryDate.setMonth(pointExpiryDate.getMonth() + 3);
                     yield prisma_1.default.userPoint.create({
@@ -73,7 +73,6 @@ class AuthController {
                             expiredAt: pointExpiryDate,
                         },
                     });
-                    console.log(`10,000 points added to referrer: ${referrer.id}, expires on ${pointExpiryDate}`);
                     const couponExpiryDate = new Date();
                     couponExpiryDate.setMonth(couponExpiryDate.getMonth() + 3);
                     yield prisma_1.default.userCoupon.create({
@@ -83,7 +82,6 @@ class AuthController {
                             expiredAt: couponExpiryDate,
                         },
                     });
-                    console.log(`10% discount coupon added for new user: ${newUser.id}, expires on ${couponExpiryDate}`);
                 }
                 const payload = { id: newUser.id };
                 const token = (0, jsonwebtoken_1.sign)(payload, process.env.JWT_KEY, { expiresIn: "10m" });
@@ -103,7 +101,7 @@ class AuthController {
                 yield transporter.sendMail({
                     from: process.env.EMAIL_USER,
                     to: email,
-                    subject: "Welcome to Blogger",
+                    subject: "Welcome to the HYPETIX Platform",
                     html,
                 });
                 res.status(201).send({ message: "Registration Successful √" });
@@ -118,30 +116,24 @@ class AuthController {
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { data, password } = req.body;
-                const user = yield prisma_1.default.user.findFirst({
-                    where: {
-                        OR: [{ email: data }, { password: data }],
-                    },
+                const { email, password } = req.body;
+                console.log("Login email received:", email);
+                const user = yield prisma_1.default.user.findUnique({
+                    where: { email },
                 });
+                console.log("User found:", user);
                 if (!user)
                     throw { message: "Account not found!" };
                 if (!user.isVerify)
                     throw { message: "Account is not verified!" };
-                const isValidPass = yield (0, bcrypt_1.compare)(password, user.password);
-                if (!isValidPass)
-                    throw { message: "Incorrect Password" };
+                const isValidPassword = yield (0, bcrypt_1.compare)(password, user.password);
+                console.log("Password valid:", isValidPassword);
+                if (!isValidPassword)
+                    throw { message: "Invalid password" };
                 const payload = { id: user.id };
                 const token = (0, jsonwebtoken_1.sign)(payload, process.env.JWT_KEY, { expiresIn: "1d" });
-                res
-                    .status(200)
-                    .cookie("token", token, {
-                    httpOnly: true,
-                    maxAge: 24 * 3600 * 1000,
-                    path: "/",
-                    secure: process.env.NODE_ENV === "production",
-                })
-                    .send({
+                console.log("Generated token:", token);
+                res.status(200).send({
                     message: "Login Successful √",
                     token,
                     data: {
@@ -154,7 +146,7 @@ class AuthController {
                 });
             }
             catch (err) {
-                console.error(err);
+                console.error("Error during login:", err);
                 res.status(400).send(err);
             }
         });

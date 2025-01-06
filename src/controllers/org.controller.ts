@@ -8,7 +8,6 @@ import nodemailer from "nodemailer";
 import handlebars from "handlebars";
 
 export class OrganizerController {
-  // Metode untuk registrasi organizer
   async registerOrg(req: Request, res: Response) {
     try {
       const { password, confirmPassword, organizer_name, email } = req.body;

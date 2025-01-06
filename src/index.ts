@@ -15,7 +15,6 @@ import { UserProfileRouter } from "./routers/userProfile.router";
 
 const PORT: number = 8000;
 const app: Application = express();
-const userController = new UserController();
 export const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());

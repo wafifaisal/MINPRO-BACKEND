@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
+const cloudinary_1 = require("../services/cloudinary");
 class UserController {
     // Method untuk mengambil semua pengguna
     getUsers(req, res) {
@@ -45,12 +46,16 @@ class UserController {
     // Method untuk mengambil data pengguna berdasarkan ID
     getUserId(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var _a, _b;
             try {
+                console.log("userId:", req.userId);
                 const user = yield prisma_1.default.user.findUnique({
-                    where: { id: (_b = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.toString() },
+                    where: { id: req.userId },
                 });
+<<<<<<< HEAD
                 res.status(200).send({ user });
+=======
+                res.status(200).send({ result: user });
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
             }
             catch (err) {
                 console.log(err);
@@ -93,11 +98,11 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             var _a, _b;
             try {
-                if (!req.file)
-                    throw { message: "file empty" };
-                const link = `http://localhost:8000/api/public/avatar/${req.file.filename}`;
+                // if (!req.file) throw { message: "file empty" };
+                const file = req.file;
+                const { secure_url } = yield (0, cloudinary_1.cloudinaryUpload)(file, "avatar");
                 yield prisma_1.default.user.update({
-                    data: { avatar: link },
+                    data: { avatar: secure_url },
                     where: { id: (_b = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.toString() },
                 });
                 res.status(200).send({ message: "avatar edited !" });

@@ -19,6 +19,7 @@ class OrderController {
     createTransaction(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+<<<<<<< HEAD
                 //const userId = req.user?.id.toString();
                 const userId = "379d85ed-5f54-4336-a871-321c5c18c2fc";
                 const { total_price, final_price, ticketCart, userPoint, userCoupon } = req.body;
@@ -40,6 +41,25 @@ class OrderController {
                         });
                     }
                     const { id } = yield prisma.order.create({
+=======
+                const userId = "15d455f7-9c74-4581-aca4-e1bb6a171b56"; // Contoh user ID
+                const { total_price, final_price, ticketCart } = req.body;
+                const expiredAt = new Date(Date.now() + 10 * 60000); // Expired in 10 minutes
+                const { id } = yield prisma_1.default.order.create({
+                    data: {
+                        userId: userId,
+                        total_price,
+                        final_price,
+                        expiredAt,
+                    },
+                });
+                yield Promise.all(ticketCart.map((item) => __awaiter(this, void 0, void 0, function* () {
+                    if (item.quantity > item.Ticket.seats) {
+                        throw new Error(`Insufficient seats for ticket ID: ${item.Ticket.id}`);
+                    }
+                    // Create order details
+                    yield prisma_1.default.order_Details.create({
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                         data: {
                             userId: userId,
                             total_price,
@@ -49,6 +69,7 @@ class OrderController {
                             expiredAt,
                         },
                     });
+<<<<<<< HEAD
                     yield Promise.all(ticketCart.map((item) => __awaiter(this, void 0, void 0, function* () {
                         if (item.quantity > item.Ticket.seats) {
                             throw new Error(`Insufficient seats for ticket ID: ${item.Ticket.id}`);
@@ -73,6 +94,15 @@ class OrderController {
                 res
                     .status(200)
                     .send({ message: "Transaction created", orderId: transactionId });
+=======
+                    // Update ticket seats
+                    yield prisma_1.default.ticket.update({
+                        data: { seats: { decrement: item.quantity } },
+                        where: { id: item.Ticket.id },
+                    });
+                })));
+                res.status(200).send({ message: "Transaction created", orderId: id });
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
             }
             catch (err) {
                 console.error("Error creating order:", err);
@@ -137,6 +167,7 @@ class OrderController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { orderId, gross_amount } = req.body;
+<<<<<<< HEAD
                 console.log("TEST REQ BODY :", req.body);
                 const item_details = [];
                 const checkTransaction = yield prisma_1.default.order.findUnique({
@@ -147,12 +178,22 @@ class OrderController {
                         userCoupon: true,
                         userPoint: true,
                     },
+=======
+                const item_details = [];
+                const checkTransaction = yield prisma_1.default.order.findUnique({
+                    where: { id: orderId },
+                    select: { status: true, expiredAt: true },
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                 });
                 if ((checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.status) === "cancelled")
                     throw "You cannot continue transaction, as your delaying transaction";
                 const resMinutes = new Date(`${checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.expiredAt}`).getTime() -
                     new Date().getTime();
+<<<<<<< HEAD
                 // const duration = Math.ceil(resMinutes / 60000);
+=======
+                const duration = Math.ceil(resMinutes / 60000);
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                 const ticketTransaction = yield prisma_1.default.order_Details.findMany({
                     where: { orderId: orderId },
                     include: {
@@ -163,9 +204,14 @@ class OrderController {
                         },
                     },
                 });
+<<<<<<< HEAD
                 //console.log("User Id:", req.user?.id);
                 const user = yield prisma_1.default.user.findUnique({
                     where: { id: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
+=======
+                const user = yield prisma_1.default.user.findUnique({
+                    where: { id: "15d455f7-9c74-4581-aca4-e1bb6a171b56" },
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                 });
                 for (const item of ticketTransaction) {
                     item_details.push({
@@ -173,6 +219,7 @@ class OrderController {
                         name: item.Ticket.category,
                         price: item.subtotal / item.quantity,
                         quantity: item.quantity,
+<<<<<<< HEAD
                     });
                 }
                 if (checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.userCoupon) {
@@ -197,6 +244,9 @@ class OrderController {
                         price: -checkTransaction.userPoint,
                         quantity: 1,
                         name: "Points",
+=======
+                        category: item.Ticket.category,
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                     });
                 }
                 const snap = new midtransClient.Snap({
@@ -205,8 +255,13 @@ class OrderController {
                 });
                 const parameter = {
                     transaction_details: {
+<<<<<<< HEAD
                         gross_amount: gross_amount,
                         order_id: orderId.toString(),
+=======
+                        order_id: orderId.toString(),
+                        gross_amount: gross_amount,
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                     },
                     customer_details: {
                         first_name: user === null || user === void 0 ? void 0 : user.firstName,
@@ -216,11 +271,19 @@ class OrderController {
                     item_details,
                     page_expiry: {
                         unit: "minutes",
+<<<<<<< HEAD
                         duration: 10,
                     },
                     expiry: {
                         unit: "minutes",
                         duration: 10,
+=======
+                        duration: duration,
+                    },
+                    expiry: {
+                        unit: "minutes",
+                        duration: duration,
+>>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                     },
                 };
                 const order = yield snap.createTransaction(parameter);
