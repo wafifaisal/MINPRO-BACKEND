@@ -23,17 +23,6 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         return;
     }
     try {
-<<<<<<< HEAD
-        const token = (_a = req.header("Authorization")) === null || _a === void 0 ? void 0 : _a.replace("Bearer ", "");
-        if (!token)
-            throw { message: "Unauthorized to enter" };
-        const verified = (0, jsonwebtoken_1.verify)(token, process.env.JWT_KEY);
-        if (verified.role === "user")
-            req.user = verified;
-        else
-            req.organizer = verified;
-        next();
-=======
         const decoded = (0, jsonwebtoken_1.verify)(token, process.env.JWT_KEY);
         const user = yield prisma_1.default.user.findUnique({
             where: { id: decoded.id },
@@ -62,7 +51,6 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             return;
         }
         res.status(403).send({ message: "Invalid token" });
->>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
     }
     catch (err) {
         console.error(err);

@@ -18,6 +18,7 @@ const bcrypt_1 = require("bcrypt");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
 const handlebars_1 = __importDefault(require("handlebars"));
 const generateReffCode_1 = require("../utils/generateReffCode");
 class AuthController {
@@ -51,10 +52,6 @@ class AuthController {
                     data: { ref_code: refCode },
                 });
                 if (ref_by) {
-<<<<<<< HEAD
-                    console.log("Processing referral...");
-=======
->>>>>>> 483d4e2ca03a7ddb90d20adcd246a8cfb033fd3d
                     const referrer = yield prisma_1.default.user.findFirst({
                         where: { ref_code: ref_by },
                     });
@@ -90,8 +87,7 @@ class AuthController {
                 const templateSource = fs_1.default.readFileSync(templatePath, "utf-8");
                 const compiledTemplate = handlebars_1.default.compile(templateSource);
                 const html = compiledTemplate({ firstName, link });
-                const nodemailer = require('nodemailer');
-                const transporter = nodemailer.createTransport({
+                const transporter = nodemailer_1.default.createTransport({
                     service: "gmail",
                     auth: {
                         user: process.env.EMAIL_USER,
@@ -112,7 +108,6 @@ class AuthController {
             }
         });
     }
-    // Method untuk login
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -151,7 +146,6 @@ class AuthController {
             }
         });
     }
-    // Method untuk verifikasi pengguna
     verifyUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
