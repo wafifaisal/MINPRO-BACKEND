@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
 class UserController {
+    // Method untuk mengambil semua pengguna
     getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -41,6 +42,7 @@ class UserController {
             }
         });
     }
+    // Method untuk mengambil data pengguna berdasarkan ID
     getUserId(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a, _b;
@@ -49,18 +51,6 @@ class UserController {
                     where: { id: (_b = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.toString() },
                 });
                 res.status(200).send({ user });
-            }
-            catch (err) {
-                console.log(err);
-                res.status(400).send(err);
-            }
-        });
-    }
-    createUser(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield prisma_1.default.user.create({ data: req.body });
-                res.status(201).send("User created ✅");
             }
             catch (err) {
                 console.log(err);
@@ -84,6 +74,7 @@ class UserController {
             }
         });
     }
+    // Method untuk menghapus pengguna
     deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -97,6 +88,7 @@ class UserController {
             }
         });
     }
+    // Method untuk mengedit avatar pengguna
     editAvatar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a, _b;
@@ -116,12 +108,12 @@ class UserController {
             }
         });
     }
+    // Method untuk mengedit avatar menggunakan Cloud (non-functional)
     editAvatarCloud(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (!req.file)
                     throw { message: "file empty" };
-                // Removed cloudinary upload since it's not available
                 res.status(400).send({ message: "Upload failed" });
             }
             catch (err) {

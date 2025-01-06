@@ -18,19 +18,17 @@ const bcrypt_1 = require("bcrypt");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
-const nodemailer_1 = __importDefault(require("nodemailer"));
 const handlebars_1 = __importDefault(require("handlebars"));
 const generateReffCode_1 = require("../utils/generateReffCode");
 class AuthController {
+    // Method untuk registrasi pengguna
     registerUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { password, confirmPassword, firstName, lastName, email, ref_by } = req.body;
                 if (password !== confirmPassword)
                     throw { message: "Passwords do not match!" };
-                const existingUser = yield prisma_1.default.user.findFirst({
-                    where: { email },
-                });
+                const existingUser = yield prisma_1.default.user.findFirst({ where: { email } });
                 if (existingUser)
                     throw { message: "Email has already been used" };
                 const salt = yield (0, bcrypt_1.genSalt)(10);
@@ -56,7 +54,9 @@ class AuthController {
                 console.log("Referral Code Updated:", refCode);
                 if (ref_by) {
                     console.log("Processing referral...");
-                    const referrer = yield prisma_1.default.user.findFirst({ where: { ref_code: ref_by } });
+                    const referrer = yield prisma_1.default.user.findFirst({
+                        where: { ref_code: ref_by },
+                    });
                     if (!referrer)
                         throw { message: "Invalid referral code" };
                     yield prisma_1.default.user.update({
@@ -88,11 +88,12 @@ class AuthController {
                 const payload = { id: newUser.id };
                 const token = (0, jsonwebtoken_1.sign)(payload, process.env.JWT_KEY, { expiresIn: "10m" });
                 const link = `${process.env.BASE_URL_FE}/verify/${token}`;
-                const templatePath = path_1.default.join(__dirname, "../templates/verify.hbs");
+                const templatePath = path_1.default.join(__dirname, "../templates/verifyUser.hbs");
                 const templateSource = fs_1.default.readFileSync(templatePath, "utf-8");
                 const compiledTemplate = handlebars_1.default.compile(templateSource);
                 const html = compiledTemplate({ firstName, link });
-                const transporter = nodemailer_1.default.createTransport({
+                const nodemailer = require('nodemailer');
+                const transporter = nodemailer.createTransport({
                     service: "gmail",
                     auth: {
                         user: process.env.EMAIL_USER,
@@ -113,6 +114,7 @@ class AuthController {
             }
         });
     }
+    // Method untuk login
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -157,6 +159,7 @@ class AuthController {
             }
         });
     }
+    // Method untuk verifikasi pengguna
     verifyUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

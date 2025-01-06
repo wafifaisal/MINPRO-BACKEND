@@ -19,32 +19,60 @@ class OrderController {
     createTransaction(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const userId = "28c71cea-a9b5-43ee-a1cc-dd05bc330385"; // Contoh user ID
-                const { total_price, final_price, ticketCart } = req.body;
+                //const userId = req.user?.id.toString();
+                const userId = "379d85ed-5f54-4336-a871-321c5c18c2fc";
+                const { total_price, final_price, ticketCart, userPoint, userCoupon } = req.body;
                 const expiredAt = new Date(Date.now() + 10 * 60000); // Expired in 10 minutes
-                const { id } = yield prisma_1.default.order.create({
-                    data: {
-                        userId: userId,
-                        total_price,
-                        final_price,
-                        expiredAt,
-                    },
-                });
-                for (const item of ticketCart) {
-                    yield prisma_1.default.order_Details.create({
+                const transactionId = yield prisma_1.default.$transaction((prisma) => __awaiter(this, void 0, void 0, function* () {
+                    if (userCoupon) {
+                        const userCoupon = yield prisma.userCoupon.findFirst({
+                            where: { userId: userId },
+                        });
+                        yield prisma.userCoupon.update({
+                            where: { id: userCoupon === null || userCoupon === void 0 ? void 0 : userCoupon.id },
+                            data: { isRedeem: false },
+                        });
+                    }
+                    if (userPoint) {
+                        yield prisma.userPoint.updateMany({
+                            where: { userId: userId },
+                            data: { isRedeem: false },
+                        });
+                    }
+                    const { id } = yield prisma.order.create({
                         data: {
-                            orderId: id,
-                            ticketId: item.Ticket.id,
-                            quantity: item.quantity,
-                            subtotal: item.quantity * item.Ticket.price,
+                            userId: userId,
+                            total_price,
+                            userCoupon,
+                            userPoint,
+                            final_price,
+                            expiredAt,
                         },
                     });
-                    yield prisma_1.default.ticket.update({
-                        data: { seats: { decrement: item.quantity } },
-                        where: { id: item.Ticket.id },
-                    });
-                }
-                res.status(200).send({ message: "Transaction created", orderId: id });
+                    yield Promise.all(ticketCart.map((item) => __awaiter(this, void 0, void 0, function* () {
+                        if (item.quantity > item.Ticket.seats) {
+                            throw new Error(`Insufficient seats for ticket ID: ${item.Ticket.id}`);
+                        }
+                        // Create order details
+                        yield prisma.order_Details.create({
+                            data: {
+                                orderId: id,
+                                ticketId: item.Ticket.id,
+                                quantity: item.quantity,
+                                subtotal: item.quantity * item.Ticket.price,
+                            },
+                        });
+                        // Update ticket seats
+                        yield prisma.ticket.update({
+                            data: { seats: { decrement: item.quantity } },
+                            where: { id: item.Ticket.id },
+                        });
+                    })));
+                    return id;
+                }));
+                res
+                    .status(200)
+                    .send({ message: "Transaction created", orderId: transactionId });
             }
             catch (err) {
                 console.error("Error creating order:", err);
@@ -63,6 +91,8 @@ class OrderController {
                     select: {
                         total_price: true,
                         final_price: true,
+                        userCoupon: true,
+                        userPoint: true,
                         status: true,
                         createdAt: true,
                         expiredAt: true,
@@ -106,15 +136,137 @@ class OrderController {
     getSnapToken(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const { orderId, gross_amount } = req.body;
+                console.log("TEST REQ BODY :", req.body);
+                const item_details = [];
+                const checkTransaction = yield prisma_1.default.order.findUnique({
+                    where: { id: orderId },
+                    select: {
+                        status: true,
+                        expiredAt: true,
+                        userCoupon: true,
+                        userPoint: true,
+                    },
+                });
+                if ((checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.status) === "cancelled")
+                    throw "You cannot continue transaction, as your delaying transaction";
+                const resMinutes = new Date(`${checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.expiredAt}`).getTime() -
+                    new Date().getTime();
+                // const duration = Math.ceil(resMinutes / 60000);
+                const ticketTransaction = yield prisma_1.default.order_Details.findMany({
+                    where: { orderId: orderId },
+                    include: {
+                        Ticket: {
+                            select: {
+                                category: true,
+                            },
+                        },
+                    },
+                });
+                //console.log("User Id:", req.user?.id);
+                const user = yield prisma_1.default.user.findUnique({
+                    where: { id: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
+                });
+                for (const item of ticketTransaction) {
+                    item_details.push({
+                        id: item.ticketId,
+                        name: item.Ticket.category,
+                        price: item.subtotal / item.quantity,
+                        quantity: item.quantity,
+                    });
+                }
+                if (checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.userCoupon) {
+                    const userCoupon = yield prisma_1.default.userCoupon.findFirst({
+                        where: { userId: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
+                    });
+                    item_details.push({
+                        id: userCoupon === null || userCoupon === void 0 ? void 0 : userCoupon.id,
+                        name: "Coupon",
+                        price: -(req.body.total_price - checkTransaction.userPoint) / 10,
+                        quantity: 1,
+                    });
+                }
+                if (checkTransaction && (checkTransaction === null || checkTransaction === void 0 ? void 0 : checkTransaction.userPoint) > 0) {
+                    const points = yield prisma_1.default.userPoint.findMany({
+                        where: { userId: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
+                        select: { point: true },
+                        orderBy: { createdAt: "asc" },
+                    });
+                    item_details.push({
+                        id: points[0].point,
+                        price: -checkTransaction.userPoint,
+                        quantity: 1,
+                        name: "Points",
+                    });
+                }
                 const snap = new midtransClient.Snap({
                     isProduction: false,
-                    serverKey: `${process.env.MID_SERVER_KEY}`,
+                    serverKey: process.env.MID_SERVER_KEY,
                 });
-                const parameters = {
-                    transaction_details: req.body,
+                const parameter = {
+                    transaction_details: {
+                        gross_amount: gross_amount,
+                        order_id: orderId.toString(),
+                    },
+                    customer_details: {
+                        first_name: user === null || user === void 0 ? void 0 : user.firstName,
+                        last_name: user === null || user === void 0 ? void 0 : user.lastName,
+                        email: user === null || user === void 0 ? void 0 : user.email,
+                    },
+                    item_details,
+                    page_expiry: {
+                        unit: "minutes",
+                        duration: 10,
+                    },
+                    expiry: {
+                        unit: "minutes",
+                        duration: 10,
+                    },
                 };
-                const order = yield snap.createTransaction(parameters);
+                const order = yield snap.createTransaction(parameter);
+                console.log("Generated token:", order.token); // Log token
                 res.status(200).send({ result: order.token });
+            }
+            catch (err) {
+                console.log("Error generating token:", err);
+                res
+                    .status(400)
+                    .send({ error: "An unknown error occurred while fetching the token" });
+            }
+        });
+    }
+    midtransWebHook(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { transaction_status, order_id } = req.body;
+                console.log("Order_ID :", +order_id);
+                const statusOrder = transaction_status === "settlement"
+                    ? "success"
+                    : transaction_status === "pending"
+                        ? "pending"
+                        : "cancelled";
+                if (statusOrder === "cancelled") {
+                    const tickets = yield prisma_1.default.order_Details.findMany({
+                        where: { orderId: +order_id },
+                        select: {
+                            quantity: true,
+                            ticketId: true,
+                        },
+                    });
+                    for (const item of tickets) {
+                        yield prisma_1.default.ticket.update({
+                            where: { id: item.ticketId },
+                            data: { seats: { increment: item.quantity } },
+                        });
+                    }
+                }
+                yield prisma_1.default.order.update({
+                    where: { id: +order_id },
+                    data: {
+                        status: statusOrder,
+                    },
+                });
+                res.status(200).send({ message: "Success" });
             }
             catch (err) {
                 console.log(err);

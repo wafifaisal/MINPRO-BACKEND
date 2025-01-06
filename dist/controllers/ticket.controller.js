@@ -32,18 +32,22 @@ class TicketController {
     createTicket(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.params.eventId);
                 const eventId = req.params.eventId;
-                req.body.eventId = req.params.eventId;
-                const tickets = req.body.tickets;
-                for (let i = 0; i < tickets.length; i++) {
-                    tickets[i].eventId = eventId;
-                }
-                yield prisma_1.default.ticket.createMany({ data: req.body.tickets });
-                res.status(200).send({ message: "Ticket has been created" });
+                req.body.eventId = eventId;
+                const event = yield prisma_1.default.event.findUnique({
+                    where: { id: eventId },
+                    select: { event_type: true },
+                });
+                const tickets = req.body.tickets.map((ticket) => (Object.assign(Object.assign({}, ticket), { eventId, price: (event === null || event === void 0 ? void 0 : event.event_type) === "Free" ? 0 : ticket.price })));
+                // console.log("eventId:", eventId);
+                // console.log("Event found:", event);
+                // console.log("Tickets to create:", tickets);
+                // Simpan tiket ke dalam database
+                yield prisma_1.default.ticket.createMany({ data: tickets });
+                res.status(200).send({ message: "Tickets have been created" });
             }
             catch (err) {
-                console.log(err);
+                console.error(err);
                 res.status(400).send(err);
             }
         });
