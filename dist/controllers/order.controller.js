@@ -30,7 +30,7 @@ class OrderController {
                         });
                         yield prisma.userCoupon.update({
                             where: { id: userCoupon === null || userCoupon === void 0 ? void 0 : userCoupon.id },
-                            data: { isRedeem: false },
+                            data: { isRedeem: true },
                         });
                     }
                     if (userPoint) {

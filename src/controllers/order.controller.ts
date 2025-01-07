@@ -20,7 +20,7 @@ export class OrderController {
           });
           await prisma.userCoupon.update({
             where: { id: userCoupon?.id },
-            data: { isRedeem: false },
+            data: { isRedeem: true },
           });
         }
         if (userPoint) {
