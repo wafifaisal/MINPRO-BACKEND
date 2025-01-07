@@ -6,47 +6,72 @@ import { requestBody } from "../types/reqBody";
 export class OrderController {
   async createTransaction(req: Request<{}, {}, requestBody>, res: Response) {
     try {
-      const userId = "15d455f7-9c74-4581-aca4-e1bb6a171b56"; // Contoh user ID
-      const { total_price, final_price, ticketCart } = req.body;
+      //const userId = req.user?.id.toString();
+      const userId = "379d85ed-5f54-4336-a871-321c5c18c2fc";
+      const { total_price, final_price, ticketCart, userPoint, userCoupon } =
+        req.body;
 
       const expiredAt = new Date(Date.now() + 10 * 60000); // Expired in 10 minutes
 
-      const { id } = await prisma.order.create({
-        data: {
-          userId: userId,
-          total_price,
-          final_price,
-          expiredAt,
-        },
+      const transactionId = await prisma.$transaction(async (prisma) => {
+        if (userCoupon) {
+          const userCoupon = await prisma.userCoupon.findFirst({
+            where: { userId: userId },
+          });
+          await prisma.userCoupon.update({
+            where: { id: userCoupon?.id },
+            data: { isRedeem: false },
+          });
+        }
+        if (userPoint) {
+          await prisma.userPoint.updateMany({
+            where: { userId: userId },
+            data: { isRedeem: false },
+          });
+        }
+
+        const { id } = await prisma.order.create({
+          data: {
+            userId: userId,
+            total_price,
+            userCoupon,
+            userPoint,
+            final_price,
+            expiredAt,
+          },
+        });
+
+        await Promise.all(
+          ticketCart.map(async (item) => {
+            if (item.quantity > item.Ticket.seats) {
+              throw new Error(
+                `Insufficient seats for ticket ID: ${item.Ticket.id}`
+              );
+            }
+
+            // Create order details
+            await prisma.order_Details.create({
+              data: {
+                orderId: id,
+                ticketId: item.Ticket.id,
+                quantity: item.quantity,
+                subtotal: item.quantity * item.Ticket.price,
+              },
+            });
+
+            // Update ticket seats
+            await prisma.ticket.update({
+              data: { seats: { decrement: item.quantity } },
+              where: { id: item.Ticket.id },
+            });
+          })
+        );
+        return id;
       });
 
-      await Promise.all(
-        ticketCart.map(async (item) => {
-          if (item.quantity > item.Ticket.seats) {
-            throw new Error(
-              `Insufficient seats for ticket ID: ${item.Ticket.id}`
-            );
-          }
-
-          // Create order details
-          await prisma.order_Details.create({
-            data: {
-              orderId: id,
-              ticketId: item.Ticket.id,
-              quantity: item.quantity,
-              subtotal: item.quantity * item.Ticket.price,
-            },
-          });
-
-          // Update ticket seats
-          await prisma.ticket.update({
-            data: { seats: { decrement: item.quantity } },
-            where: { id: item.Ticket.id },
-          });
-        })
-      );
-
-      res.status(200).send({ message: "Transaction created", orderId: id });
+      res
+        .status(200)
+        .send({ message: "Transaction created", orderId: transactionId });
     } catch (err) {
       console.error("Error creating order:", err);
       res
@@ -63,6 +88,8 @@ export class OrderController {
         select: {
           total_price: true,
           final_price: true,
+          userCoupon: true,
+          userPoint: true,
           status: true,
           createdAt: true,
           expiredAt: true,
@@ -106,11 +133,17 @@ export class OrderController {
   async getSnapToken(req: Request, res: Response) {
     try {
       const { orderId, gross_amount } = req.body;
+      console.log("TEST REQ BODY :", req.body);
       const item_details = [];
 
       const checkTransaction = await prisma.order.findUnique({
         where: { id: orderId },
-        select: { status: true, expiredAt: true },
+        select: {
+          status: true,
+          expiredAt: true,
+          userCoupon: true,
+          userPoint: true,
+        },
       });
       if (checkTransaction?.status === "cancelled")
         throw "You cannot continue transaction, as your delaying transaction";
@@ -119,7 +152,7 @@ export class OrderController {
         new Date(`${checkTransaction?.expiredAt}`).getTime() -
         new Date().getTime();
 
-      const duration = Math.ceil(resMinutes / 60000);
+      // const duration = Math.ceil(resMinutes / 60000);
 
       const ticketTransaction = await prisma.order_Details.findMany({
         where: { orderId: orderId },
@@ -132,8 +165,10 @@ export class OrderController {
         },
       });
 
+      //console.log("User Id:", req.user?.id);
+
       const user = await prisma.user.findUnique({
-        where: { id: "15d455f7-9c74-4581-aca4-e1bb6a171b56" },
+        where: { id: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
       });
 
       for (const item of ticketTransaction) {
@@ -142,7 +177,33 @@ export class OrderController {
           name: item.Ticket.category,
           price: item.subtotal / item.quantity,
           quantity: item.quantity,
-          category: item.Ticket.category,
+        });
+      }
+
+      if (checkTransaction?.userCoupon) {
+        const userCoupon = await prisma.userCoupon.findFirst({
+          where: { userId: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
+        });
+        item_details.push({
+          id: userCoupon?.id,
+          name: "Coupon",
+          price: -(req.body.total_price - checkTransaction.userPoint) / 10,
+          quantity: 1,
+        });
+      }
+
+      if (checkTransaction && checkTransaction?.userPoint > 0) {
+        const points = await prisma.userPoint.findMany({
+          where: { userId: "379d85ed-5f54-4336-a871-321c5c18c2fc" },
+          select: { point: true },
+          orderBy: { createdAt: "asc" },
+        });
+
+        item_details.push({
+          id: points[0].point,
+          price: -checkTransaction.userPoint,
+          quantity: 1,
+          name: "Points",
         });
       }
 
@@ -153,8 +214,8 @@ export class OrderController {
 
       const parameter = {
         transaction_details: {
-          order_id: orderId.toString(),
           gross_amount: gross_amount,
+          order_id: orderId.toString(),
         },
         customer_details: {
           first_name: user?.firstName,
@@ -164,11 +225,11 @@ export class OrderController {
         item_details,
         page_expiry: {
           unit: "minutes",
-          duration: duration,
+          duration: 10,
         },
         expiry: {
           unit: "minutes",
-          duration: duration,
+          duration: 10,
         },
       };
 

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient, Prisma } from "../../prisma/generated/client";
 import { cloudinaryUpload } from "../services/cloudinary";
 import { Readable } from "stream";
 
@@ -14,6 +13,10 @@ export class EventController {
       if (search) {
         filter.event_name = { contains: search as string, mode: "insensitive" };
       }
+
+      const currentDate = new Date();
+      filter.event_date = { gt: currentDate };
+
       const events = await prisma.event.findMany({
         where: filter,
         select: {
@@ -104,11 +107,9 @@ export class EventController {
     try {
       if (!req.file) throw { message: "Image is required" };
 
-      // Proses file dan upload ke Cloudinary
       const file = req.file as Express.Multer.File & { stream: Readable };
       const { secure_url } = await cloudinaryUpload(file, "event");
 
-      // Mengambil properti dari req.body secara eksplisit
       const {
         event_name,
         description,
@@ -123,8 +124,8 @@ export class EventController {
         coupon_seat,
       } = req.body;
 
-      //const organizerId = req.organizer?.id.toString();
-      // console.log("ORGANIZER ID : ", organizerId);
+      const organizerId = req.organizer?.id.toString();
+      console.log("ORGANIZER ID : ", organizerId);
 
       const couponSeat = coupon_seat ? Number(coupon_seat) : undefined;
 
@@ -142,7 +143,7 @@ export class EventController {
         event_date,
         event_preview,
         coupon_seat: couponSeat,
-        //   organizerId,
+        organizerId,
       };
 
       // Simpan ke database

@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventController = void 0;
-const client_1 = require("@prisma/client");
+const client_1 = require("../../prisma/generated/client");
 const cloudinary_1 = require("../services/cloudinary");
 const prisma = new client_1.PrismaClient();
 class EventController {
@@ -22,6 +22,8 @@ class EventController {
                 if (search) {
                     filter.event_name = { contains: search, mode: "insensitive" };
                 }
+                const currentDate = new Date();
+                filter.event_date = { gt: currentDate };
                 const events = yield prisma.event.findMany({
                     where: filter,
                     select: {
@@ -113,16 +115,15 @@ class EventController {
     }
     createEvent(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            var _a;
             try {
                 if (!req.file)
                     throw { message: "Image is required" };
-                // Proses file dan upload ke Cloudinary
                 const file = req.file;
                 const { secure_url } = yield (0, cloudinary_1.cloudinaryUpload)(file, "event");
-                // Mengambil properti dari req.body secara eksplisit
                 const { event_name, description, location, venue, start_time, end_time, event_date, event_type, category, event_preview, coupon_seat, } = req.body;
-                //const organizerId = req.organizer?.id.toString();
-                // console.log("ORGANIZER ID : ", organizerId);
+                const organizerId = (_a = req.organizer) === null || _a === void 0 ? void 0 : _a.id.toString();
+                console.log("ORGANIZER ID : ", organizerId);
                 const couponSeat = coupon_seat ? Number(coupon_seat) : undefined;
                 // Data yang akan dikirim ke database
                 const eventData = {
@@ -138,7 +139,7 @@ class EventController {
                     event_date,
                     event_preview,
                     coupon_seat: couponSeat,
-                    //   organizerId,
+                    organizerId,
                 };
                 // Simpan ke database
                 const { id } = yield prisma.event.create({

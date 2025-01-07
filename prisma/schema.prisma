@@ -1,7 +1,6 @@
 generator client {
-  provider      = "prisma-client-js"
-  output        = "./generated/client"
-  binaryTargets = ["native", "darwin-arm64"]
+  provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
@@ -95,14 +94,6 @@ enum Status {
   cancelled
 }
 
-enum RatingRange {
-  ONE   @map("1")
-  TWO   @map("2")
-  THREE @map("3")
-  FOUR  @map("4")
-  FIVE  @map("5")
-}
-
 model User {
   id          String       @id @default(uuid())
   firstName   String
@@ -150,6 +141,8 @@ model Order {
   createdAt     DateTime        @default(now())
   expiredAt     DateTime
   redirect_url  String?
+  userCoupon    Boolean         @default(false)
+  userPoint     Int             @default(0)
   Order_Details Order_Details[]
   User          User?           @relation(fields: [userId], references: [id])
   userId        String?
@@ -172,10 +165,10 @@ model Review {
   userId    String
   eventId   String
   comment   String
-  rating    RatingRange
-  createdAt DateTime    @default(now())
-  user      User        @relation(fields: [userId], references: [id])
-  events    Event       @relation(fields: [eventId], references: [id])
+  rating    Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  events    Event    @relation(fields: [eventId], references: [id])
 
   @@id([userId, eventId])
 }

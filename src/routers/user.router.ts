@@ -16,7 +16,7 @@ export class UserRouter {
   private initializeRoutes() {
     this.router.get("/", verifyToken, this.userController.getUsers);
     this.router.get("/:id", verifyToken, this.userController.getUserId);
-    this.router.post("/auth")
+    this.router.post("/auth");
 
     this.router.patch(
       "/avatar",

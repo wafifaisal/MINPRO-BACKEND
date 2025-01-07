@@ -31,27 +31,24 @@ class TicketController {
     }
     createTicket(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const eventId = req.params.eventId;
             try {
-                console.log(eventId);
-                // Ensure the eventId is included in the request body
+                const eventId = req.params.eventId;
                 req.body.eventId = eventId;
-                // Map over tickets to add eventId to each
-                const tickets = req.body.tickets.map((ticket) => (Object.assign(Object.assign({}, ticket), { eventId })));
-                // Fetch event_type from the Event table
                 const event = yield prisma_1.default.event.findUnique({
                     where: { id: eventId },
                     select: { event_type: true },
                 });
-                // If the event type is "Free", set the ticket price to 0
-                const updatedTickets = tickets.map((ticket) => (Object.assign(Object.assign({}, ticket), { price: (event === null || event === void 0 ? void 0 : event.event_type) === "Free" ? 0 : ticket.price })));
-                // Insert tickets into the database
-                yield prisma_1.default.ticket.createMany({ data: updatedTickets });
+                const tickets = req.body.tickets.map((ticket) => (Object.assign(Object.assign({}, ticket), { eventId, price: (event === null || event === void 0 ? void 0 : event.event_type) === "Free" ? 0 : ticket.price })));
+                // console.log("eventId:", eventId);
+                // console.log("Event found:", event);
+                // console.log("Tickets to create:", tickets);
+                // Simpan tiket ke dalam database
+                yield prisma_1.default.ticket.createMany({ data: tickets });
                 res.status(200).send({ message: "Tickets have been created" });
             }
             catch (err) {
                 console.error(err);
-                res.status(500).send({ message: "Internal server error", error: err });
+                res.status(400).send(err);
             }
         });
     }
