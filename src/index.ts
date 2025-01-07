@@ -10,7 +10,6 @@ import { OrgAuthRouter } from "./routers/org.router";
 import { TicketRouter } from "./routers/ticket.router";
 import { OrderRouter } from "./routers/order.router";
 import { ReviewRouter } from "./routers/review.router";
-import { UserController } from "./controllers/user.controller";
 import { UserProfileRouter } from "./routers/userProfile.router";
 
 const PORT: number = 8000;
