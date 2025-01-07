@@ -46,7 +46,6 @@ export const verifyToken = async (
       return; 
     }
 
-    // If not found, check if it's an organizer
     const organizer = await prisma.organizer.findUnique({
       where: { id: decoded.id },
     });

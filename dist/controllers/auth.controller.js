@@ -100,6 +100,7 @@ class AuthController {
                     subject: "Welcome to the HYPETIX Platform",
                     html,
                 });
+                console.log(link);
                 res.status(201).send({ message: "Registration Successful √" });
             }
             catch (err) {
