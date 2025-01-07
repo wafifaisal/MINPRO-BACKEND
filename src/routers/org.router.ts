@@ -12,7 +12,10 @@ export class OrgAuthRouter {
   }
 
   private initializeRoutes() {
-    this.router.post("/organizer/register", this.organizerController.registerOrg);
+    this.router.post(
+      "/organizer/register",
+      this.organizerController.registerOrg
+    );
     this.router.post("/organizer/login", this.organizerController.loginOrg);
     this.router.patch("/verify/:token", this.organizerController.verifyOrg);
   }

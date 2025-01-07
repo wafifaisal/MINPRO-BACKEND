@@ -40,7 +40,6 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             next();
             return;
         }
-        // If not found, check if it's an organizer
         const organizer = yield prisma_1.default.organizer.findUnique({
             where: { id: decoded.id },
         });
